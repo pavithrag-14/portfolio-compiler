@@ -1,0 +1,1078 @@
+{
+  "users": [
+    {
+      "id": "usr_neshat_demo",
+      "email": "student@portfolio.ai",
+      "passwordHash": "$2b$10$7rHQu/Yoqcr1IApBOWCm4e4mAEXhRpbf6OkIamlrl8SDBRTMlnIl.",
+      "createdAt": "2026-10-06T17:21:54.058Z",
+      "updatedAt": "2026-10-06T17:21:54.068Z"
+    },
+    {
+      "id": "usr_1791473716354_u7xm2",
+      "email": "pavithrag.cs24@bitsathy.ac.in",
+      "passwordHash": "$2b$10$G5wfYNXXO.SqiSVfsUwVTeKJIwPnSSdXeyCF9NSLXEovmFiO8XQF.",
+      "createdAt": "2026-10-08T15:35:16.359Z",
+      "updatedAt": "2026-10-08T15:35:16.359Z"
+    },
+    {
+      "id": "usr_1791560036307_dkfbz",
+      "email": "nishanthinis.cs24@bitsathy.ac.in",
+      "passwordHash": "$2b$10$XcfEzJRIzn9Qx0d0G9KLiON.9YZPI.5RszplL7Q7bmVroZMC8kA.i",
+      "createdAt": "2026-10-09T15:33:56.317Z",
+      "updatedAt": "2026-10-09T15:33:56.319Z"
+    }
+  ],
+  "profiles": [
+    {
+      "userId": "usr_neshat_demo",
+      "fullName": "Neshat V.",
+      "email": "student@portfolio.ai",
+      "phone": "+1 (555) 234-5678",
+      "college": "National Institute of Technology",
+      "degree": "B.Tech in Computer Science",
+      "department": "Computer Science and Engineering",
+      "graduationYear": "2026",
+      "location": "Bangalore, India",
+      "linkedinUrl": "https://linkedin.com/in/neshat-demo",
+      "githubUrl": "https://github.com/neshat-demo",
+      "headline": "AI Portfolio Architect & Systems Engineer",
+      "aboutMe": "Passionate about human-centered design systems, high-concurrency microservices, and cryptographic credential integrity.",
+      "targetRoleId": "ui-ux-designer",
+      "avatarUrl": ""
+    },
+    {
+      "userId": "usr_1791473716354_u7xm2",
+      "fullName": "PAVITHRA G",
+      "profilePhoto": null,
+      "email": "pavithrag.cs24@bitsathy.ac.in",
+      "phone": "9345824774",
+      "college": "Bannari amman institute of technology",
+      "degree": "Bachelor of Engineering(B.E)",
+      "department": "Computer Science And Engineering",
+      "graduationYear": "2028",
+      "location": "Erode",
+      "linkedInUrl": "",
+      "githubUrl": "https://github.com/pavithrag-14",
+      "headline": "Full Stack developer",
+      "aboutMe": "Full Stack Developer with knowledge of designing, developing, testing, and maintaining end-to-end web applications. Skilled in front-end and back-end technologies, database management, REST API integration, version control, and application deployment. Focused on building scalable, secure, responsive, and user-friendly applications.",
+      "targetRoleId": "fullstack-developer",
+      "createdAt": "2026-10-08T15:35:17.764Z",
+      "updatedAt": "2026-10-09T15:37:26.530Z",
+      "linkedinUrl": "https://www.linkedin.com/in/pavithra-g-79217b366/",
+      "avatarUrl": ""
+    },
+    {
+      "userId": "usr_1791560036307_dkfbz",
+      "fullName": "NISHANTHINI S",
+      "profilePhoto": null,
+      "email": "nishanthinis.cs24@bitsathy.ac.in",
+      "phone": "9994881576",
+      "college": "Bannari Amman Institute Of Technology",
+      "degree": "B.E",
+      "department": "Computer Science and Engineering",
+      "graduationYear": "2028",
+      "location": "Erode",
+      "linkedInUrl": "",
+      "githubUrl": "https://github.com/nishanthiniscs24-eng",
+      "headline": "Cybersecurity Engineer Candidate",
+      "aboutMe": "I am a passionate computer science student with a strong interest in cyber security problem solving and emerging technologies",
+      "targetRoleId": "cybersecurity-engineer",
+      "createdAt": "2026-10-09T15:33:56.350Z",
+      "updatedAt": "2026-10-09T15:52:08.847Z",
+      "linkedinUrl": "https://www.linkedin.com/in/nishanthini-s-290b1b355/?isSelfProfile=true",
+      "avatarUrl": ""
+    }
+  ],
+  "academics": [
+    {
+      "userId": "usr_neshat_demo",
+      "status": "Academic Records Partially Verified",
+      "calculatedCgpa": 8.85,
+      "documentCgpa": 8.85,
+      "hasDiscrepancy": false,
+      "discrepancyDelta": 0,
+      "marksheets": [
+        {
+          "semester": "sem1",
+          "filename": "sem1_transcript_verified.pdf",
+          "fileUrl": "/uploads/academics/sem1_transcript_verified.pdf",
+          "fileType": "application/pdf",
+          "uploadedAt": "2026-10-06T17:21:54.068Z",
+          "isVerified": true,
+          "extractedData": {
+            "studentName": "Neshat V.",
+            "registerNumber": "NIT2022CS891",
+            "college": "National Institute of Technology",
+            "degree": "B.Tech in Computer Science",
+            "department": "Computer Science and Engineering",
+            "semester": "Semester 1",
+            "sgpa": 8.85,
+            "cgpa": 8.85,
+            "totalCredits": 22,
+            "backlogs": 0,
+            "passFailStatus": "PASS",
+            "subjects": [
+              {
+                "code": "CS101",
+                "name": "Introduction to Computing",
+                "credits": 4,
+                "grade": "A+",
+                "gradePoint": 9,
+                "status": "PASS"
+              },
+              {
+                "code": "MA101",
+                "name": "Engineering Mathematics I",
+                "credits": 4,
+                "grade": "A",
+                "gradePoint": 8.5,
+                "status": "PASS"
+              },
+              {
+                "code": "PH101",
+                "name": "Engineering Physics",
+                "credits": 4,
+                "grade": "A+",
+                "gradePoint": 9,
+                "status": "PASS"
+              },
+              {
+                "code": "EE101",
+                "name": "Basic Electrical & Electronics",
+                "credits": 3,
+                "grade": "A",
+                "gradePoint": 8.5,
+                "status": "PASS"
+              },
+              {
+                "code": "CS102",
+                "name": "Programming Laboratory",
+                "credits": 2,
+                "grade": "O",
+                "gradePoint": 10,
+                "status": "PASS"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "userId": "usr_1791473716354_u7xm2",
+      "status": "Academic Records Updated",
+      "sem1Status": "Uploaded & Verified",
+      "marksheets": [
+        {
+          "id": "ms_sem1_1791558100156",
+          "semester": "sem1",
+          "fileName": "sem1 marks.pdf",
+          "filePath": "/uploads/academics/usr_1791473716354_u7xm2-marksheet-1791558100107-572047099.pdf",
+          "fileSize": "169.0 KB",
+          "uploadDate": "2026-10-09T15:01:40.156Z",
+          "status": "Verified",
+          "isVerified": true,
+          "extractedData": {
+            "studentName": "PAVITHRA G",
+            "rollNumber": "NIT2022CS869",
+            "registerNumber": "NIT2022CS882",
+            "college": "Bannari amman institute of technology",
+            "degree": "Bachelor of Engineering(B.E)",
+            "department": "Computer Science And Engineering",
+            "semester": "Semester 1",
+            "subjects": [
+              {
+                "code": "CS101",
+                "name": "Introduction to Computing & Logic",
+                "credits": 4,
+                "grade": "A+",
+                "gradePoint": 9,
+                "status": "PASS"
+              },
+              {
+                "code": "MA101",
+                "name": "Engineering Mathematics I: Calculus & Matrices",
+                "credits": 4,
+                "grade": "A",
+                "gradePoint": 8.5,
+                "status": "PASS"
+              },
+              {
+                "code": "PH101",
+                "name": "Engineering Physics & Semiconductors",
+                "credits": 4,
+                "grade": "A+",
+                "gradePoint": 9,
+                "status": "PASS"
+              },
+              {
+                "code": "EE101",
+                "name": "Basic Electrical & Electronics Engineering",
+                "credits": 3,
+                "grade": "A",
+                "gradePoint": 8.5,
+                "status": "PASS"
+              },
+              {
+                "code": "CS102",
+                "name": "Programming Laboratory in C",
+                "credits": 2,
+                "grade": "O",
+                "gradePoint": 10,
+                "status": "PASS"
+              }
+            ],
+            "sgpa": 8.91,
+            "cgpa": 8.91,
+            "backlogs": 0,
+            "passFailStatus": "PASS"
+          }
+        },
+        {
+          "id": "ms_sem2_1791558797901",
+          "semester": "sem2",
+          "fileName": "sem1 marks.pdf",
+          "filePath": "/uploads/academics/usr_1791473716354_u7xm2-marksheet-1791558797724-868058285.pdf",
+          "fileSize": "169.0 KB",
+          "uploadDate": "2026-10-09T15:13:17.901Z",
+          "status": "Verified",
+          "isVerified": true,
+          "extractedData": {
+            "studentName": "PAVITHRA G",
+            "rollNumber": "NIT2022CS953",
+            "registerNumber": "NIT2022CS864",
+            "college": "Bannari amman institute of technology",
+            "degree": "Bachelor of Engineering(B.E)",
+            "department": "Computer Science And Engineering",
+            "semester": "Semester 2",
+            "subjects": [
+              {
+                "code": "CS201",
+                "name": "Data Structures and Algorithms",
+                "credits": 4,
+                "grade": "A+",
+                "gradePoint": 9.5,
+                "status": "PASS"
+              },
+              {
+                "code": "MA201",
+                "name": "Discrete Mathematical Structures",
+                "credits": 4,
+                "grade": "A",
+                "gradePoint": 9,
+                "status": "PASS"
+              },
+              {
+                "code": "CS202",
+                "name": "Digital Logic & Computer Organization",
+                "credits": 4,
+                "grade": "A",
+                "gradePoint": 8.5,
+                "status": "PASS"
+              },
+              {
+                "code": "CS203",
+                "name": "Object Oriented Programming with C++",
+                "credits": 3,
+                "grade": "O",
+                "gradePoint": 10,
+                "status": "PASS"
+              },
+              {
+                "code": "CS204",
+                "name": "Data Structures Lab",
+                "credits": 2,
+                "grade": "A+",
+                "gradePoint": 9.5,
+                "status": "PASS"
+              }
+            ],
+            "sgpa": 9.24,
+            "cgpa": 9.24,
+            "backlogs": 0,
+            "passFailStatus": "PASS"
+          }
+        }
+      ],
+      "calculatedCgpa": 9.07,
+      "documentCgpa": 9.24,
+      "hasDiscrepancy": true,
+      "discrepancyNote": "Discrepancy Detected: Printed document CGPA is 9.24, but credit-weighted calculation across 34 subjects yields 9.07. Please inspect grades.",
+      "verifiedDate": null,
+      "discrepancyDelta": 0.17,
+      "totalCreditsAnalyzed": 34
+    },
+    {
+      "userId": "usr_1791560036307_dkfbz",
+      "status": "Academic Records Partially Verified",
+      "sem1Status": "Uploaded & Verified",
+      "marksheets": [
+        {
+          "id": "ms_sem1_1791561041725",
+          "semester": "sem1",
+          "fileName": "DOC-20260817-WA0000.pdf",
+          "filePath": "/uploads/academics/usr_1791560036307_dkfbz-marksheet-1791561041640-476657103.pdf",
+          "fileSize": "171.0 KB",
+          "uploadDate": "2026-10-09T15:50:41.725Z",
+          "status": "Verified",
+          "isVerified": true,
+          "extractedData": {
+            "studentName": "NISHANTHINI S",
+            "rollNumber": "NIT2022CS877",
+            "registerNumber": "NIT2022CS919",
+            "college": "Bannari Amman Institute Of Technology",
+            "degree": "B.E",
+            "department": "Computer Science and Engineering",
+            "semester": "Semester 1",
+            "subjects": [
+              {
+                "code": "CS101",
+                "name": "Introduction to Computing & Logic",
+                "credits": 4,
+                "grade": "A+",
+                "gradePoint": 9,
+                "status": "PASS"
+              },
+              {
+                "code": "MA101",
+                "name": "Engineering Mathematics I: Calculus & Matrices",
+                "credits": 4,
+                "grade": "A",
+                "gradePoint": 8.5,
+                "status": "PASS"
+              },
+              {
+                "code": "PH101",
+                "name": "Engineering Physics & Semiconductors",
+                "credits": 4,
+                "grade": "A+",
+                "gradePoint": 9,
+                "status": "PASS"
+              },
+              {
+                "code": "EE101",
+                "name": "Basic Electrical & Electronics Engineering",
+                "credits": 3,
+                "grade": "A",
+                "gradePoint": 8.5,
+                "status": "PASS"
+              },
+              {
+                "code": "CS102",
+                "name": "Programming Laboratory in C",
+                "credits": 2,
+                "grade": "O",
+                "gradePoint": 10,
+                "status": "PASS"
+              }
+            ],
+            "sgpa": 8.91,
+            "cgpa": 8.91,
+            "backlogs": 0,
+            "passFailStatus": "PASS"
+          }
+        }
+      ],
+      "calculatedCgpa": 8.91,
+      "documentCgpa": 8.91,
+      "hasDiscrepancy": false,
+      "discrepancyNote": null,
+      "verifiedDate": null,
+      "discrepancyDelta": 0,
+      "totalCreditsAnalyzed": 17
+    }
+  ],
+  "certifications": [
+    {
+      "id": "cert_1",
+      "userId": "usr_neshat_demo",
+      "title": "Meta Front-End Developer Professional Certificate",
+      "name": "Meta Front-End Developer Professional Certificate",
+      "issuer": "Coursera / Meta",
+      "certificateId": "COURSERA-META-7821",
+      "issueDate": "2024-03-15",
+      "score": "98%",
+      "credentialUrl": "https://coursera.org/verify/META7821",
+      "status": "Verified",
+      "skillsVerified": [
+        "React",
+        "JavaScript",
+        "UI Architecture",
+        "Figma"
+      ],
+      "verificationEvidence": "Cryptographically validated against Coursera public certificate registry."
+    },
+    {
+      "id": "cert_1791558333538_mb9l",
+      "userId": "usr_1791473716354_u7xm2",
+      "title": "eCertificate",
+      "studentName": "",
+      "issuer": "Accredited Issuer",
+      "certificateId": "CERT-333533",
+      "issueDate": "2026-10-09",
+      "expiryDate": "",
+      "courseName": "eCertificate",
+      "duration": "40 hours",
+      "scoreGrade": "95%",
+      "credentialUrl": "",
+      "verificationUrl": "",
+      "qrCodeData": "",
+      "filePath": "/uploads/certifications/usr_1791473716354_u7xm2-cert-1791558333099-306620657.pdf",
+      "fileName": "eCertificate.pdf",
+      "status": "Pending Verification",
+      "verificationEvidence": "Certificate ID submitted; awaiting origin registry synchronization.",
+      "skillsVerified": [],
+      "uploadedAt": "2026-10-09T15:05:33.538Z"
+    },
+    {
+      "id": "cert_1791558348828_v8hl",
+      "userId": "usr_1791473716354_u7xm2",
+      "title": "Alison certificate",
+      "studentName": "",
+      "issuer": "Accredited Issuer",
+      "certificateId": "CERT-348828",
+      "issueDate": "2026-10-09",
+      "expiryDate": "",
+      "courseName": "Alison certificate",
+      "duration": "40 hours",
+      "scoreGrade": "95%",
+      "credentialUrl": "",
+      "verificationUrl": "",
+      "qrCodeData": "",
+      "filePath": "/uploads/certifications/usr_1791473716354_u7xm2-cert-1791558348811-673351465.pdf",
+      "fileName": "Alison certificate.pdf",
+      "status": "Pending Verification",
+      "verificationEvidence": "Certificate ID submitted; awaiting origin registry synchronization.",
+      "skillsVerified": [],
+      "uploadedAt": "2026-10-09T15:05:48.828Z"
+    },
+    {
+      "id": "cert_1791561069391_05pd",
+      "userId": "usr_1791560036307_dkfbz",
+      "title": "Introduction to Cybersecurity certificate nishanthinis cs24 bitsathy ac in ffe8d87e f6b1 4171 a304 006460c1de57",
+      "studentName": "",
+      "issuer": "Accredited Issuer",
+      "certificateId": "CERT-069234",
+      "issueDate": "2026-10-09",
+      "expiryDate": "",
+      "courseName": "Introduction to Cybersecurity certificate nishanthinis cs24 bitsathy ac in ffe8d87e f6b1 4171 a304 006460c1de57",
+      "duration": "40 hours",
+      "scoreGrade": "95%",
+      "credentialUrl": "",
+      "verificationUrl": "",
+      "qrCodeData": "",
+      "filePath": "/uploads/certifications/usr_1791560036307_dkfbz-cert-1791561068273-881430520.pdf",
+      "fileName": "Introduction_to_Cybersecurity_certificate_nishanthinis-cs24-bitsathy-ac-in_ffe8d87e-f6b1-4171-a304-006460c1de57.pdf",
+      "status": "Pending Verification",
+      "verificationEvidence": "Certificate ID submitted; awaiting origin registry synchronization.",
+      "skillsVerified": [],
+      "uploadedAt": "2026-10-09T15:51:09.391Z"
+    }
+  ],
+  "codingProfiles": [
+    {
+      "userId": "usr_neshat_demo",
+      "github": {
+        "connected": true,
+        "username": "neshat-developer",
+        "publicRepos": 14,
+        "stars": 42,
+        "forks": 18,
+        "topLanguages": [
+          "TypeScript",
+          "JavaScript",
+          "Python",
+          "CSS"
+        ],
+        "repositories": [
+          {
+            "name": "portfolio-compiler-engine",
+            "url": "https://github.com/neshat/portfolio-compiler-engine",
+            "description": "Autonomous student employability evaluation platform",
+            "language": "JavaScript",
+            "stargazers_count": 24
+          },
+          {
+            "name": "neuro-synth-ui",
+            "url": "https://github.com/neshat/neuro-synth-ui",
+            "description": "Real-time telemetry dashboard with WebGL graphs",
+            "language": "TypeScript",
+            "stargazers_count": 18
+          }
+        ]
+      },
+      "leetcode": {
+        "connected": true,
+        "username": "neshat_coder",
+        "totalSolved": 240,
+        "easySolved": 110,
+        "mediumSolved": 105,
+        "hardSolved": 25,
+        "contestRating": 1840,
+        "ranking": 42100,
+        "acceptanceRate": "68.4%",
+        "badges": [
+          "50 Days 2024",
+          "Top SQL 50",
+          "Graph Master"
+        ]
+      }
+    },
+    {
+      "userId": "usr_1791473716354_u7xm2",
+      "github": {
+        "username": "pavithrag-14",
+        "profileUrl": "https://github.com/pavithrag-14",
+        "connected": true,
+        "publicRepos": 8,
+        "starsCount": 0,
+        "topLanguages": [
+          {
+            "language": "CSS",
+            "count": 5
+          },
+          {
+            "language": "HTML",
+            "count": 3
+          }
+        ],
+        "repos": [
+          {
+            "name": "Saas-homepage",
+            "description": "homepage",
+            "language": "CSS",
+            "stars": 0,
+            "forks": 0,
+            "htmlUrl": "https://github.com/pavithrag-14/Saas-homepage",
+            "updatedAt": "2025-12-30T09:05:13Z",
+            "topics": []
+          },
+          {
+            "name": "chat-UI",
+            "description": "chatbox",
+            "language": "HTML",
+            "stars": 0,
+            "forks": 0,
+            "htmlUrl": "https://github.com/pavithrag-14/chat-UI",
+            "updatedAt": "2025-12-30T08:45:56Z",
+            "topics": []
+          },
+          {
+            "name": "music-player_pavi",
+            "description": "music player",
+            "language": "CSS",
+            "stars": 0,
+            "forks": 0,
+            "htmlUrl": "https://github.com/pavithrag-14/music-player_pavi",
+            "updatedAt": "2025-12-29T03:59:29Z",
+            "topics": []
+          },
+          {
+            "name": "pavi_music",
+            "description": "music",
+            "language": "CSS",
+            "stars": 0,
+            "forks": 0,
+            "htmlUrl": "https://github.com/pavithrag-14/pavi_music",
+            "updatedAt": "2025-12-29T03:41:21Z",
+            "topics": []
+          },
+          {
+            "name": "music-player_14",
+            "description": "music player",
+            "language": "CSS",
+            "stars": 0,
+            "forks": 0,
+            "htmlUrl": "https://github.com/pavithrag-14/music-player_14",
+            "updatedAt": "2025-12-29T03:34:06Z",
+            "topics": []
+          },
+          {
+            "name": "music_14",
+            "description": "music player",
+            "language": "CSS",
+            "stars": 0,
+            "forks": 0,
+            "htmlUrl": "https://github.com/pavithrag-14/music_14",
+            "updatedAt": "2025-12-29T03:27:30Z",
+            "topics": []
+          },
+          {
+            "name": "potrfolio_14",
+            "description": "portfolio",
+            "language": "HTML",
+            "stars": 0,
+            "forks": 0,
+            "htmlUrl": "https://github.com/pavithrag-14/potrfolio_14",
+            "updatedAt": "2025-12-29T03:23:33Z",
+            "topics": []
+          },
+          {
+            "name": "portfolio-pavi",
+            "description": "portfolio",
+            "language": "HTML",
+            "stars": 0,
+            "forks": 0,
+            "htmlUrl": "https://github.com/pavithrag-14/portfolio-pavi",
+            "updatedAt": "2025-12-29T03:19:34Z",
+            "topics": []
+          }
+        ],
+        "lastFetched": "2026-10-09T15:07:32.724Z",
+        "name": "pavithrag-14",
+        "avatarUrl": "https://avatars.githubusercontent.com/u/250994258?v=4",
+        "bio": ""
+      },
+      "leetcode": {
+        "username": "_pxvi__14",
+        "profileUrl": "https://leetcode.com/u/_pxvi__14",
+        "connected": true,
+        "totalSolved": 17,
+        "easy": 10,
+        "medium": 5,
+        "hard": 2,
+        "contestRating": 1810,
+        "ranking": "Top 5.2%",
+        "badges": [
+          "50 Days Badge 2024",
+          "Top SQL 50",
+          "Graph Specialist"
+        ],
+        "acceptanceRate": "68.2%",
+        "lastFetched": "2026-10-09T15:07:57.848Z"
+      }
+    },
+    {
+      "userId": "usr_1791560036307_dkfbz",
+      "github": {
+        "username": "nishanthiniscs24-eng",
+        "profileUrl": "https://github.com/nishanthiniscs24-eng",
+        "connected": true,
+        "publicRepos": 14,
+        "starsCount": 38,
+        "topLanguages": [
+          {
+            "language": "TypeScript",
+            "count": 7
+          },
+          {
+            "language": "JavaScript",
+            "count": 5
+          },
+          {
+            "language": "Python",
+            "count": 3
+          }
+        ],
+        "repos": [
+          {
+            "name": "nishanthiniscs24-eng-portfolio",
+            "description": "AI Portfolio Generation and Employability Assessment platform",
+            "language": "JavaScript",
+            "stars": 21,
+            "forks": 5,
+            "htmlUrl": "https://github.com/nishanthiniscs24-eng/nishanthiniscs24-eng-portfolio",
+            "updatedAt": "2026-10-09T15:51:29.490Z"
+          },
+          {
+            "name": "distributed-event-queue",
+            "description": "High-throughput publish-subscribe message broker in Go",
+            "language": "TypeScript",
+            "stars": 17,
+            "forks": 4,
+            "htmlUrl": "https://github.com/nishanthiniscs24-eng/distributed-event-queue",
+            "updatedAt": "2026-10-09T15:51:29.490Z"
+          }
+        ],
+        "lastFetched": "2026-10-09T15:51:28.833Z"
+      },
+      "leetcode": {
+        "username": "Nisha14nd",
+        "profileUrl": "https://leetcode.com/u/Nisha14nd",
+        "connected": true,
+        "totalSolved": 18,
+        "easy": 10,
+        "medium": 6,
+        "hard": 2,
+        "contestRating": 1810,
+        "ranking": "Top 5.2%",
+        "badges": [
+          "50 Days Badge 2024",
+          "Top SQL 50",
+          "Graph Specialist"
+        ],
+        "acceptanceRate": "68.2%",
+        "lastFetched": "2026-10-09T15:51:45.438Z"
+      }
+    }
+  ],
+  "projects": [
+    {
+      "id": "proj_1",
+      "userId": "usr_neshat_demo",
+      "title": "Autonomous Drone Flight Telemetry Controller",
+      "problemStatement": "Latency spikes in manual drone ground stations cause packet drops during BVLOS flight.",
+      "solution": "Engineered a WebSockets real-time dashboard with React and FastAPI achieving sub-30ms round-trip latency.",
+      "description": "Engineered a WebSockets real-time dashboard with React and FastAPI achieving sub-30ms round-trip latency.",
+      "technologies": [
+        "React",
+        "FastAPI",
+        "WebSockets",
+        "Python",
+        "Docker"
+      ],
+      "role": "Full Stack & Telemetry Architect",
+      "teamSize": "2",
+      "githubUrl": "https://github.com/neshat/drone-telemetry-controller",
+      "demoUrl": "https://drone-telemetry-demo.vercel.app",
+      "duration": "4 months",
+      "outcome": "Reduced telemetry latency by 45% with zero dropped frames across 100km simulated trials."
+    },
+    {
+      "id": "proj_2",
+      "userId": "usr_neshat_demo",
+      "title": "Decentralized Healthcare Record Vault",
+      "problemStatement": "Siloed patient medical histories prevent fast emergency access across divergent hospitals.",
+      "solution": "Built an encrypted health wallet leveraging AES-256 and client-side zero-knowledge proof verification.",
+      "description": "Built an encrypted health wallet leveraging AES-256 and client-side zero-knowledge proof verification.",
+      "technologies": [
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL",
+        "Cryptography"
+      ],
+      "role": "Backend Security Engineer",
+      "teamSize": "3",
+      "githubUrl": "https://github.com/neshat/health-record-vault",
+      "demoUrl": "https://health-vault-demo.vercel.app",
+      "duration": "3 months",
+      "outcome": "Validated cryptographic audit speed under 120ms with HIPPA compliance test suite."
+    }
+  ],
+  "skills": [
+    {
+      "id": "sk_1",
+      "userId": "usr_neshat_demo",
+      "name": "User Research",
+      "category": "UI/UX",
+      "proficiency": 85,
+      "verified": true,
+      "source": "Project & Cert"
+    },
+    {
+      "id": "sk_2",
+      "userId": "usr_neshat_demo",
+      "name": "Wireframing & Figma",
+      "category": "UI/UX",
+      "proficiency": 92,
+      "verified": true,
+      "source": "Cert"
+    },
+    {
+      "id": "sk_3",
+      "userId": "usr_neshat_demo",
+      "name": "React & Frontend",
+      "category": "Web Development",
+      "proficiency": 88,
+      "verified": true,
+      "source": "GitHub Repos"
+    },
+    {
+      "id": "sk_4",
+      "userId": "usr_neshat_demo",
+      "name": "Data Structures & Algorithms",
+      "category": "Programming",
+      "proficiency": 82,
+      "verified": true,
+      "source": "LeetCode"
+    },
+    {
+      "id": "sk_5",
+      "userId": "usr_neshat_demo",
+      "name": "SQL & Database",
+      "category": "Database",
+      "proficiency": 78,
+      "verified": true,
+      "source": "Academic Transcript"
+    },
+    {
+      "id": "sk_6",
+      "userId": "usr_neshat_demo",
+      "name": "Docker & Containerization",
+      "category": "DevOps",
+      "proficiency": 75,
+      "verified": true,
+      "source": "Projects"
+    },
+    {
+      "id": "skl_1791309111166_cs4z",
+      "userId": "usr_neshat_demo",
+      "name": "UI/UX Design",
+      "category": "Design",
+      "proficiency": 80,
+      "source": "assessment",
+      "verified": true
+    }
+  ],
+  "assessmentAttempts": [
+    {
+      "id": "att_1791309111163_7dbz",
+      "userId": "usr_neshat_demo",
+      "topicId": "ui-ux",
+      "attemptNumber": 1,
+      "history": [
+        {
+          "attemptNumber": 1,
+          "date": "2026-10-06T17:51:51.164Z",
+          "score": 80,
+          "correctCount": 40,
+          "incorrectCount": 10
+        },
+        {
+          "attemptNumber": 1,
+          "date": "2026-10-08T13:02:13.075Z",
+          "score": 80,
+          "correctCount": 40,
+          "incorrectCount": 10
+        },
+        {
+          "attemptNumber": 1,
+          "date": "2026-10-08T13:02:13.141Z",
+          "score": 80,
+          "correctCount": 40,
+          "incorrectCount": 10
+        },
+        {
+          "attemptNumber": 1,
+          "date": "2026-10-08T13:03:20.253Z",
+          "score": 80,
+          "correctCount": 40,
+          "incorrectCount": 10
+        },
+        {
+          "attemptNumber": 1,
+          "date": "2026-10-09T14:44:39.071Z",
+          "score": 80,
+          "correctCount": 40,
+          "incorrectCount": 10
+        },
+        {
+          "attemptNumber": 1,
+          "date": "2026-10-09T14:44:54.580Z",
+          "score": 80,
+          "correctCount": 40,
+          "incorrectCount": 10
+        }
+      ],
+      "status": "Completed",
+      "score": 80,
+      "correctCount": 40,
+      "incorrectCount": 10,
+      "totalCount": 50,
+      "strengths": [
+        "Robust applied implementation skills",
+        "Excellent advanced algorithmic intuition"
+      ],
+      "weaknesses": [
+        "Q2 (Easy): Review explanation: UX stands for User Experience, encompassing the overall satisfaction and usability.",
+        "Q11 (Easy): Review explanation: Apple and Android guidelines recommend roughly 44x44 pt / 48x48 dp touch targets.",
+        "Q14 (Easy): Review explanation: SVG (Scalable Vector Graphics) maintains sharpness at any zoom level.",
+        "Q21 (Medium): Review explanation: Hick's law states that more options cause longer decision time and cognitive friction.",
+        "Q22 (Medium): Review explanation: Fitts's Law explains why larger and closer interactive buttons are faster and easier to click."
+      ],
+      "answers": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1,
+        "13": 1,
+        "14": 1,
+        "15": 1,
+        "16": 1,
+        "17": 1,
+        "18": 1,
+        "19": 1,
+        "20": 1,
+        "21": 1,
+        "22": 1,
+        "23": 1,
+        "24": 1,
+        "25": 1,
+        "26": 1,
+        "27": 1,
+        "28": 1,
+        "29": 1,
+        "30": 1,
+        "31": 1,
+        "32": 1,
+        "33": 1,
+        "34": 1,
+        "35": 1,
+        "36": 1,
+        "37": 1,
+        "38": 1,
+        "39": 1,
+        "40": 1,
+        "41": 1,
+        "42": 1,
+        "43": 1,
+        "44": 1,
+        "45": 1,
+        "46": 1,
+        "47": 1,
+        "48": 1,
+        "49": 1,
+        "50": 1,
+        "q2": 1,
+        "q1": 0
+      },
+      "completedAt": "2026-10-09T14:44:54.580Z"
+    }
+  ],
+  "interviewSessions": [
+    {
+      "id": "int_1791309111246_scuy",
+      "userId": "usr_neshat_demo",
+      "targetRoleId": "fullstack-developer",
+      "questions": [],
+      "answers": [
+        {
+          "question": "How do you conduct usability testing for a complex workflow, and what quantitative metrics do you measure to validate decisions?",
+          "text": "In my project, we designed a responsive design system using atomic tokens in Figma, focusing on high contrast WCAG 2.1 AAA accessibility and responsive breakpoints.",
+          "durationSec": 25,
+          "score": 92
+        }
+      ],
+      "scores": {
+        "technical": 92,
+        "communication": 95,
+        "problemSolving": 90,
+        "projectKnowledge": 96,
+        "overall": 92
+      },
+      "feedback": {
+        "strengths": [
+          "Clear terminology and problem framing."
+        ],
+        "improvements": [
+          "Elaborate more on quantitative outcomes."
+        ],
+        "summary": "Candidate demonstrated solid core competency with overall score 92%."
+      },
+      "acousticMetrics": {
+        "paceWpm": 60,
+        "fillerWords": 0,
+        "durationSec": 25
+      },
+      "completedAt": "2026-10-06T17:51:51.246Z"
+    },
+    {
+      "id": "int_1791464533208_7woj",
+      "userId": "usr_neshat_demo",
+      "targetRoleId": "fullstack-developer",
+      "questions": [],
+      "answers": [
+        {
+          "question": "How do you conduct usability testing for a complex workflow, and what quantitative metrics do you measure to validate decisions?",
+          "text": "In my project, we designed a responsive design system using atomic tokens in Figma, focusing on high contrast WCAG 2.1 AAA accessibility and responsive breakpoints.",
+          "durationSec": 25,
+          "score": 92
+        }
+      ],
+      "scores": {
+        "technical": 92,
+        "communication": 95,
+        "problemSolving": 90,
+        "projectKnowledge": 96,
+        "overall": 92
+      },
+      "feedback": {
+        "strengths": [
+          "Clear terminology and problem framing."
+        ],
+        "improvements": [
+          "Elaborate more on quantitative outcomes."
+        ],
+        "summary": "Candidate demonstrated solid core competency with overall score 92%."
+      },
+      "acousticMetrics": {
+        "paceWpm": 60,
+        "fillerWords": 0,
+        "durationSec": 25
+      },
+      "completedAt": "2026-10-08T13:02:13.208Z"
+    },
+    {
+      "id": "int_1791464600291_6tff",
+      "userId": "usr_neshat_demo",
+      "targetRoleId": "fullstack-developer",
+      "questions": [],
+      "answers": [
+        {
+          "question": "How do you conduct usability testing for a complex workflow, and what quantitative metrics do you measure to validate decisions?",
+          "text": "In my project, we designed a responsive design system using atomic tokens in Figma, focusing on high contrast WCAG 2.1 AAA accessibility and responsive breakpoints.",
+          "durationSec": 25,
+          "score": 92
+        }
+      ],
+      "scores": {
+        "technical": 92,
+        "communication": 95,
+        "problemSolving": 90,
+        "projectKnowledge": 96,
+        "overall": 92
+      },
+      "feedback": {
+        "strengths": [
+          "Clear terminology and problem framing."
+        ],
+        "improvements": [
+          "Elaborate more on quantitative outcomes."
+        ],
+        "summary": "Candidate demonstrated solid core competency with overall score 92%."
+      },
+      "acousticMetrics": {
+        "paceWpm": 60,
+        "fillerWords": 0,
+        "durationSec": 25
+      },
+      "completedAt": "2026-10-08T13:03:20.291Z"
+    }
+  ],
+  "portfolios": [
+    {
+      "userId": "usr_neshat_demo",
+      "slug": "neshat",
+      "isPublic": true,
+      "template": "bento",
+      "theme": "cyber-dark",
+      "sectionVisibility": {
+        "showAcademics": true,
+        "showCertifications": true,
+        "showCodingStats": true,
+        "showProjects": true,
+        "showSkills": true,
+        "showAssessments": true,
+        "showInterviewScore": true
+      },
+      "publishedAt": "2026-10-06T17:21:54.068Z"
+    },
+    {
+      "userId": "usr_1791473716354_u7xm2",
+      "slug": "pavithra-g-1791",
+      "updatedAt": "2026-10-08T15:35:17.852Z"
+    },
+    {
+      "userId": "usr_1791560036307_dkfbz",
+      "slug": "nishanthini-s-1791",
+      "updatedAt": "2026-10-09T15:33:56.370Z"
+    }
+  ]
+}
