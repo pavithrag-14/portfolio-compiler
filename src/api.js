@@ -143,6 +143,7 @@ export const api = {
     updateSettings: (settings) => request('/portfolio/settings', { method: 'PUT', body: JSON.stringify(settings) }),
     publish: (slug, isPublic) => request('/portfolio/publish', { method: 'POST', body: JSON.stringify({ slug, isPublic }) }),
     getPublic: (slug) => request(`/portfolio/public/${slug}`),
+    getResume: () => request('/portfolio/resume'),
   },
 
   // Dashboard Central Summary

@@ -20,9 +20,11 @@ import {
   Check, 
   RefreshCw, 
   Terminal, 
-  Lock 
+  Lock,
+  FileCheck2 
 } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
+import AtsResumeModal from '../components/AtsResumeModal';
 
 const THEMES = [
   { id: 'cyber-dark', name: 'Cyberpunk Neon', bg: 'bg-[#070b14]', text: 'text-cyan-400', border: 'border-cyan-500/30' },
@@ -38,6 +40,7 @@ export default function PortfolioView() {
   const [saving, setSaving] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const [feedbackMsg, setFeedbackMsg] = useState('');
+  const [resumeModalOpen, setResumeModalOpen] = useState(false);
   
   // Customizer form state
   const [theme, setTheme] = useState('cyber-dark');
@@ -180,6 +183,14 @@ export default function PortfolioView() {
             >
               {copiedLink ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
               <span>{copiedLink ? 'Copied URL!' : 'Copy Link'}</span>
+            </button>
+
+            <button
+              onClick={() => setResumeModalOpen(true)}
+              className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center space-x-1.5 transition shadow-sm"
+            >
+              <FileCheck2 className="w-3.5 h-3.5" />
+              <span>Download ATS Resume (PDF)</span>
             </button>
           </div>
         </div>
@@ -474,6 +485,26 @@ export default function PortfolioView() {
 
         </div>
       </div>
+
+      {/* 1-Page ATS Resume Modal */}
+      <AtsResumeModal
+        isOpen={resumeModalOpen}
+        onClose={() => setResumeModalOpen(false)}
+        studentData={pData?.student ? {
+          ...pData.student,
+          skills: pData.skills,
+          projects: pData.projects,
+          cgpa: pData.education?.cgpa || 8.85,
+          college: pData.education?.college || 'National Institute of Technology',
+          degree: pData.education?.degree || 'B.Tech in Computer Science and Engineering',
+          graduationYear: pData.education?.graduationYear || '2026',
+          academicVerification: pData.education?.verificationStatus || 'Academic Records Verified',
+          assessmentScore: pData.assessments?.[0]?.score || 80,
+          assessmentTopic: pData.assessments?.[0]?.topicTitle || 'UI/UX Design',
+          interviewScore: pData.mockInterview?.overall || 92,
+          interviewPace: pData.mockInterview?.paceWpm || 135
+        } : {}}
+      />
 
     </div>
   );

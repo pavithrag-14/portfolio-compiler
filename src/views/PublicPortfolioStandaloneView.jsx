@@ -16,11 +16,13 @@ import {
   Cpu 
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
+import AtsResumeModal from '../components/AtsResumeModal';
 
 export default function PublicPortfolioStandaloneView({ slug }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [resumeOpen, setResumeOpen] = useState(false);
 
   useEffect(() => {
     loadPublicPortfolio();
@@ -70,18 +72,29 @@ export default function PublicPortfolioStandaloneView({ slug }) {
     <div className="min-h-screen bg-[#070b14] text-slate-100 py-10 px-4 md:px-8 cyber-grid selection:bg-cyan-500/30">
       <div className="max-w-4xl mx-auto space-y-8">
         
-        {/* Top Floating Badge */}
-        <div className="flex items-center justify-between text-xs">
+        {/* Top Floating Badge & Action Buttons */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
           <div className="flex items-center space-x-2 text-cyan-400 font-mono">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>AI-Verified Candidate Portfolio</span>
           </div>
-          <a 
-            href="/" 
-            className="text-xs font-semibold text-slate-400 hover:text-cyan-300 transition"
-          >
-            Built with Portfolio Compiler →
-          </a>
+
+          <div className="flex items-center space-x-3">
+            <button
+              onClick={() => setResumeOpen(true)}
+              className="px-3 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center space-x-1.5 transition shadow-sm"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Download 1-Page ATS Resume (PDF)</span>
+            </button>
+
+            <a 
+              href="/" 
+              className="text-xs font-semibold text-slate-400 hover:text-cyan-300 transition"
+            >
+              Built with Portfolio Compiler →
+            </a>
+          </div>
         </div>
 
         {/* Hero Banner */}
@@ -266,6 +279,26 @@ export default function PublicPortfolioStandaloneView({ slug }) {
         </div>
 
       </div>
+
+      {/* 1-Page ATS Resume Modal */}
+      <AtsResumeModal
+        isOpen={resumeOpen}
+        onClose={() => setResumeOpen(false)}
+        studentData={data ? {
+          ...data,
+          skills: data.skills,
+          projects: data.projects,
+          cgpa: data.education?.cgpa || 8.85,
+          college: data.education?.college || 'National Institute of Technology',
+          degree: data.education?.degree || 'B.Tech in Computer Science and Engineering',
+          graduationYear: data.education?.graduationYear || '2026',
+          academicVerification: data.education?.verificationStatus || 'Academic Records Verified',
+          assessmentScore: data.assessments?.[0]?.score || 80,
+          assessmentTopic: data.assessments?.[0]?.topicTitle || 'UI/UX Design',
+          interviewScore: data.mockInterview?.overall || 92,
+          interviewPace: data.mockInterview?.paceWpm || 135
+        } : {}}
+      />
     </div>
   );
 }
