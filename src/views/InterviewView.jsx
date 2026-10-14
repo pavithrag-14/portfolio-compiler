@@ -16,7 +16,8 @@ import {
   ChevronLeft,
   RotateCcw,
   Terminal,
-  Send
+  Send,
+  ArrowLeft
 } from 'lucide-react';
 
 const FALLBACK_QUESTIONS = [
@@ -47,7 +48,7 @@ const FALLBACK_QUESTIONS = [
   }
 ];
 
-export default function InterviewView({ onDataChanged }) {
+export default function InterviewView({ onDataChanged, onNavigate }) {
   const [questions, setQuestions] = useState(FALLBACK_QUESTIONS);
   const [currentIdx, setCurrentIdx] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -261,12 +262,25 @@ export default function InterviewView({ onDataChanged }) {
             </p>
           </div>
 
-          <div className="flex items-center space-x-3 bg-slate-950 p-4 rounded-xl border border-slate-800 shrink-0">
-            <div className="text-center px-2">
-              <span className="text-[10px] text-slate-400 uppercase font-mono block">Interview Progress</span>
-              <span className="text-xl font-black text-indigo-400 font-mono">
-                {Object.keys(evaluations).length} / {questions.length} Evaluated
-              </span>
+          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 shrink-0">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
+
+            <div className="flex items-center space-x-3 bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <div className="text-center px-2">
+                <span className="text-[10px] text-slate-400 uppercase font-mono block">Interview Progress</span>
+                <span className="text-xl font-black text-indigo-400 font-mono">
+                  {Object.keys(evaluations).length} / {questions.length} Evaluated
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -425,7 +439,7 @@ export default function InterviewView({ onDataChanged }) {
             )}
 
             {/* Navigation footer */}
-            <div className="pt-4 border-t border-slate-800 flex items-center justify-between">
+            <div className="pt-4 border-t border-slate-800 flex flex-wrap items-center justify-between gap-2">
               <button
                 type="button"
                 disabled={currentIdx === 0}
@@ -435,6 +449,17 @@ export default function InterviewView({ onDataChanged }) {
                 <ChevronLeft className="w-4 h-4" />
                 <span>Previous Question</span>
               </button>
+
+              {onNavigate && (
+                <button
+                  type="button"
+                  onClick={() => onNavigate('dashboard')}
+                  className="px-3 py-1.5 rounded-lg bg-indigo-500/20 hover:bg-indigo-500/30 text-indigo-300 border border-indigo-500/40 text-xs font-semibold flex items-center space-x-1.5 transition"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Back to Dashboard</span>
+                </button>
+              )}
 
               <button
                 type="button"

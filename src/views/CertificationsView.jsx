@@ -15,10 +15,11 @@ import {
   X, 
   Sparkles,
   RefreshCw,
-  Search
+  Search,
+  ArrowLeft
 } from 'lucide-react';
 
-export default function CertificationsView({ onDataChanged }) {
+export default function CertificationsView({ onDataChanged, onNavigate }) {
   const [certs, setCerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -184,23 +185,48 @@ export default function CertificationsView({ onDataChanged }) {
             </p>
           </div>
 
-          <button
-            onClick={() => setIsAddModalOpen(true)}
-            className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-md glow-teal shrink-0 cursor-pointer"
-          >
-            <Plus className="w-4 h-4" />
-            <span>+ Add Certification</span>
-          </button>
+          <div className="flex flex-wrap items-center gap-2">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
+
+            <button
+              onClick={() => setIsAddModalOpen(true)}
+              className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-md glow-teal shrink-0 cursor-pointer"
+            >
+              <Plus className="w-4 h-4" />
+              <span>+ Add Certification</span>
+            </button>
+          </div>
         </div>
 
         {statusMessage.text && (
-          <div className={`mt-4 p-3 rounded-xl text-xs flex items-center space-x-2 ${
+          <div className={`mt-4 p-3 rounded-xl text-xs flex flex-wrap items-center justify-between gap-2 ${
             statusMessage.type === 'success' 
               ? 'bg-emerald-950/40 border border-emerald-500/40 text-emerald-200' 
               : 'bg-red-950/40 border border-red-500/40 text-red-200'
           }`}>
-            {statusMessage.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <AlertCircle className="w-4 h-4 text-red-400" />}
-            <span>{statusMessage.text}</span>
+            <div className="flex items-center space-x-2">
+              {statusMessage.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <AlertCircle className="w-4 h-4 text-red-400" />}
+              <span>{statusMessage.text}</span>
+            </div>
+            {onNavigate && statusMessage.type === 'success' && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1 transition shadow-sm"
+              >
+                <ArrowLeft className="w-3 h-3" />
+                <span>Return to Dashboard</span>
+              </button>
+            )}
           </div>
         )}
       </div>

@@ -13,10 +13,11 @@ import {
   Shield,
   Palette,
   Database,
-  Cloud
+  Cloud,
+  ArrowLeft
 } from 'lucide-react';
 
-export default function TargetRoleView({ onRoleSelected, onNavigateToGap }) {
+export default function TargetRoleView({ onRoleSelected, onNavigateToGap, onNavigate }) {
   const [roles, setRoles] = useState([]);
   const [currentRole, setCurrentRole] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -109,18 +110,43 @@ export default function TargetRoleView({ onRoleSelected, onNavigateToGap }) {
             </p>
           </div>
 
-          {currentRole && (
-            <div className="px-4 py-2.5 rounded-xl bg-slate-950 border border-cyan-500/30 text-right shrink-0">
-              <span className="text-[10px] text-slate-400 uppercase font-mono block">Current Active Target</span>
-              <span className="text-sm font-bold text-cyan-300">{currentRole.title}</span>
-            </div>
-          )}
+          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 shrink-0">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
+
+            {currentRole && (
+              <div className="px-4 py-2.5 rounded-xl bg-slate-950 border border-cyan-500/30 text-right">
+                <span className="text-[10px] text-slate-400 uppercase font-mono block">Current Active Target</span>
+                <span className="text-sm font-bold text-cyan-300">{currentRole.title}</span>
+              </div>
+            )}
+          </div>
         </div>
 
         {successMsg && (
-          <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex items-center space-x-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>{successMsg}</span>
+          <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center space-x-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>{successMsg}</span>
+            </div>
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1 transition shadow-sm"
+              >
+                <ArrowLeft className="w-3 h-3" />
+                <span>Return to Dashboard</span>
+              </button>
+            )}
           </div>
         )}
       </div>

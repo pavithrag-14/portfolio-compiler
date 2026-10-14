@@ -16,7 +16,8 @@ import {
   Sparkles,
   RefreshCw,
   Eye,
-  Trash2
+  Trash2,
+  ArrowLeft
 } from 'lucide-react';
 
 const SEMESTERS = [
@@ -31,7 +32,7 @@ const SEMESTERS = [
   { id: 'consolidated', title: 'Consolidated Marksheet', isRequired: false, desc: 'Optional Cumulative Transcript' },
 ];
 
-export default function AcademicsView({ onDataChanged }) {
+export default function AcademicsView({ onDataChanged, onNavigate }) {
   const [academicData, setAcademicData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [uploadingSem, setUploadingSem] = useState(null);
@@ -192,24 +193,37 @@ export default function AcademicsView({ onDataChanged }) {
             </p>
           </div>
 
-          {/* Quick CGPA Card */}
-          <div className="flex items-center space-x-4 bg-slate-950 p-4 rounded-xl border border-slate-800 shrink-0">
-            <div className="text-center px-3 border-r border-slate-800">
-              <div className="text-[11px] text-slate-400">Independent CGPA</div>
-              <div className="text-2xl font-black text-cyan-400 font-mono">
-                {calculatedCgpa ? calculatedCgpa.toFixed(2) : '—'}
+          {/* Quick CGPA Card & Dashboard Back Button */}
+          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 shrink-0">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
+
+            <div className="flex items-center space-x-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <div className="text-center px-3 border-r border-slate-800">
+                <div className="text-[11px] text-slate-400">Independent CGPA</div>
+                <div className="text-2xl font-black text-cyan-400 font-mono">
+                  {calculatedCgpa ? calculatedCgpa.toFixed(2) : '—'}
+                </div>
               </div>
-            </div>
-            <div className="text-center px-3 border-r border-slate-800">
-              <div className="text-[11px] text-slate-400">Document CGPA</div>
-              <div className="text-2xl font-black text-slate-200 font-mono">
-                {extractedCgpa ? extractedCgpa.toFixed(2) : '—'}
+              <div className="text-center px-3 border-r border-slate-800">
+                <div className="text-[11px] text-slate-400">Document CGPA</div>
+                <div className="text-2xl font-black text-slate-200 font-mono">
+                  {extractedCgpa ? extractedCgpa.toFixed(2) : '—'}
+                </div>
               </div>
-            </div>
-            <div className="text-center px-3">
-              <div className="text-[11px] text-slate-400">Active Arrears</div>
-              <div className={`text-2xl font-black ${activeBacklogs > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
-                {activeBacklogs}
+              <div className="text-center px-3">
+                <div className="text-[11px] text-slate-400">Active Arrears</div>
+                <div className={`text-2xl font-black ${activeBacklogs > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
+                  {activeBacklogs}
+                </div>
               </div>
             </div>
           </div>
@@ -230,9 +244,21 @@ export default function AcademicsView({ onDataChanged }) {
 
         {/* Feedback messages */}
         {uploadSuccess && (
-          <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex items-center space-x-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>{uploadSuccess}</span>
+          <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center space-x-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>{uploadSuccess}</span>
+            </div>
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1 transition shadow-sm"
+              >
+                <ArrowLeft className="w-3 h-3" />
+                <span>Return to Dashboard</span>
+              </button>
+            )}
           </div>
         )}
 

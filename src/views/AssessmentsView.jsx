@@ -15,7 +15,8 @@ import {
   Award, 
   HelpCircle,
   X,
-  RotateCcw
+  RotateCcw,
+  ArrowLeft
 } from 'lucide-react';
 
 const DEFAULT_TOPICS = [
@@ -28,7 +29,7 @@ const DEFAULT_TOPICS = [
   { id: 'cloud-devops', name: 'Cloud & DevOps Engineering', category: 'Cloud/DevOps', description: 'Docker, Kubernetes, CI/CD, AWS fundamentals, infrastructure as code, monitoring' }
 ];
 
-export default function AssessmentsView({ onDataChanged }) {
+export default function AssessmentsView({ onDataChanged, onNavigate }) {
   const [topics, setTopics] = useState(DEFAULT_TOPICS);
   const [selectedTopic, setSelectedTopic] = useState('ui-ux');
   const [questions, setQuestions] = useState([]);
@@ -202,19 +203,32 @@ export default function AssessmentsView({ onDataChanged }) {
             </p>
           </div>
 
-          <div className="flex items-center space-x-4 bg-slate-950 p-4 rounded-xl border border-slate-800 shrink-0">
-            <div className="text-center px-3 border-r border-slate-800">
-              <span className="text-[10px] text-slate-400 uppercase font-mono block">Timer</span>
-              <span className="text-xl font-black text-cyan-400 font-mono flex items-center">
-                <Clock className="w-4 h-4 mr-1 text-cyan-400" />
-                {formatTimer(secondsElapsed)}
-              </span>
-            </div>
-            <div className="text-center px-3">
-              <span className="text-[10px] text-slate-400 uppercase font-mono block">Progress</span>
-              <span className="text-xl font-black text-emerald-400 font-mono">
-                {answeredCount} / {questions.length || 50}
-              </span>
+          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 shrink-0">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
+
+            <div className="flex items-center space-x-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <div className="text-center px-3 border-r border-slate-800">
+                <span className="text-[10px] text-slate-400 uppercase font-mono block">Timer</span>
+                <span className="text-xl font-black text-cyan-400 font-mono flex items-center">
+                  <Clock className="w-4 h-4 mr-1 text-cyan-400" />
+                  {formatTimer(secondsElapsed)}
+                </span>
+              </div>
+              <div className="text-center px-3">
+                <span className="text-[10px] text-slate-400 uppercase font-mono block">Progress</span>
+                <span className="text-xl font-black text-emerald-400 font-mono">
+                  {answeredCount} / {questions.length || 50}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -309,13 +323,25 @@ export default function AssessmentsView({ onDataChanged }) {
               </div>
             </div>
 
-            <button
-              onClick={() => loadQuestions(selectedTopic)}
-              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-bold flex items-center space-x-1.5"
-            >
-              <RotateCcw className="w-4 h-4" />
-              <span>Retake Assessment</span>
-            </button>
+            <div className="flex items-center space-x-2">
+              {onNavigate && (
+                <button
+                  type="button"
+                  onClick={() => onNavigate('dashboard')}
+                  className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-md glow-cyan"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  <span>Back to Dashboard</span>
+                </button>
+              )}
+              <button
+                onClick={() => loadQuestions(selectedTopic)}
+                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-bold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <RotateCcw className="w-4 h-4" />
+                <span>Retake Assessment</span>
+              </button>
+            </div>
           </div>
 
           {/* Breakdown cards */}

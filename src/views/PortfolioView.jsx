@@ -21,7 +21,8 @@ import {
   RefreshCw, 
   Terminal, 
   Lock,
-  FileCheck2 
+  FileCheck2,
+  ArrowLeft
 } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 import AtsResumeModal from '../components/AtsResumeModal';
@@ -33,7 +34,7 @@ const THEMES = [
   { id: 'emerald-neo', name: 'Emerald Neo', bg: 'bg-[#061512]', text: 'text-emerald-400', border: 'border-emerald-500/30' },
 ];
 
-export default function PortfolioView() {
+export default function PortfolioView({ onNavigate }) {
   const [settings, setSettings] = useState(null);
   const [publicData, setPublicData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -172,26 +173,39 @@ export default function PortfolioView() {
             </p>
           </div>
 
-          {/* Shareable Link Box */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-slate-950 p-3 rounded-xl border border-slate-800 shrink-0">
-            <div className="text-xs font-mono text-cyan-300 px-2 py-1 bg-slate-900 rounded truncate max-w-xs">
-              {window.location.origin}/portfolio/{slug || 'student'}
-            </div>
-            <button
-              onClick={handleCopyLink}
-              className="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center justify-center space-x-1.5 transition shadow-sm glow-cyan"
-            >
-              {copiedLink ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedLink ? 'Copied URL!' : 'Copy Link'}</span>
-            </button>
+          {/* Shareable Link Box & Back to Dashboard */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 shrink-0">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center justify-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
 
-            <button
-              onClick={() => setResumeModalOpen(true)}
-              className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center space-x-1.5 transition shadow-sm"
-            >
-              <FileCheck2 className="w-3.5 h-3.5" />
-              <span>Download ATS Resume (PDF)</span>
-            </button>
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-slate-950 p-3 rounded-xl border border-slate-800">
+              <div className="text-xs font-mono text-cyan-300 px-2 py-1 bg-slate-900 rounded truncate max-w-xs">
+                {window.location.origin}/portfolio/{slug || 'student'}
+              </div>
+              <button
+                onClick={handleCopyLink}
+                className="px-3 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center justify-center space-x-1.5 transition shadow-sm glow-cyan"
+              >
+                {copiedLink ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copiedLink ? 'Copied URL!' : 'Copy Link'}</span>
+              </button>
+
+              <button
+                onClick={() => setResumeModalOpen(true)}
+                className="px-3.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center space-x-1.5 transition shadow-sm"
+              >
+                <FileCheck2 className="w-3.5 h-3.5" />
+                <span>Download ATS Resume (PDF)</span>
+              </button>
+            </div>
           </div>
         </div>
 

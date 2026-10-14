@@ -15,7 +15,8 @@ import {
   Code2, 
   Clock, 
   Users, 
-  Cpu
+  Cpu,
+  ArrowLeft
 } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 
@@ -33,7 +34,7 @@ const SKILL_CATEGORIES = [
   'Other'
 ];
 
-export default function ProjectsView({ onDataChanged }) {
+export default function ProjectsView({ onDataChanged, onNavigate }) {
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -242,6 +243,17 @@ export default function ProjectsView({ onDataChanged }) {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
+
             <button
               onClick={handleInferSkills}
               disabled={inferringSkills}

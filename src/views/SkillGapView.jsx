@@ -13,10 +13,11 @@ import {
   FileText,
   RefreshCw,
   Clock,
-  Layers
+  Layers,
+  ArrowLeft
 } from 'lucide-react';
 
-export default function SkillGapView({ onNavigateToAssessments }) {
+export default function SkillGapView({ onNavigateToAssessments, onNavigate }) {
   const [gapData, setGapData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [boostingSkill, setBoostingSkill] = useState(null);
@@ -79,10 +80,23 @@ export default function SkillGapView({ onNavigateToAssessments }) {
             </p>
           </div>
 
-          <div className="flex items-center space-x-4 bg-slate-950 p-4 rounded-xl border border-slate-800 shrink-0">
-            <div className="text-center px-2">
-              <span className="text-[10px] text-slate-400 uppercase font-mono block">Overall Fit</span>
-              <span className="text-2xl font-black text-emerald-400 font-mono">{overallMatch}%</span>
+          <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 shrink-0">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
+
+            <div className="flex items-center space-x-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
+              <div className="text-center px-2">
+                <span className="text-[10px] text-slate-400 uppercase font-mono block">Overall Fit</span>
+                <span className="text-2xl font-black text-emerald-400 font-mono">{overallMatch}%</span>
+              </div>
             </div>
           </div>
         </div>

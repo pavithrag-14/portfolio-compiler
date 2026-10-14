@@ -79,6 +79,7 @@ function MainApp() {
           {activeTab === 'profile' && (
             <ProfileView 
               onProfileUpdated={handleDataChanged} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
@@ -86,6 +87,7 @@ function MainApp() {
             <AcademicsView 
               key={`academics-${refreshTrigger}`}
               onDataChanged={handleDataChanged} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
@@ -93,6 +95,7 @@ function MainApp() {
             <CertificationsView 
               key={`certs-${refreshTrigger}`}
               onDataChanged={handleDataChanged} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
@@ -100,6 +103,7 @@ function MainApp() {
             <CodingProfilesView 
               key={`coding-${refreshTrigger}`}
               onDataChanged={handleDataChanged} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
@@ -107,15 +111,15 @@ function MainApp() {
             <ProjectsView 
               key={`projects-${refreshTrigger}`}
               onDataChanged={handleDataChanged} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
-
-
 
           {activeTab === 'roles' && (
             <TargetRoleView 
               onRoleSelected={handleDataChanged}
               onNavigateToGap={() => setActiveTab('skill-gap')} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
@@ -123,6 +127,7 @@ function MainApp() {
             <SkillGapView 
               key={`gap-${refreshTrigger}`}
               onNavigateToAssessments={() => setActiveTab('assessments')} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
@@ -130,6 +135,7 @@ function MainApp() {
             <AssessmentsView 
               key={`assess-${refreshTrigger}`}
               onDataChanged={handleDataChanged} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
@@ -137,6 +143,7 @@ function MainApp() {
             <InterviewView 
               key={`interview-${refreshTrigger}`}
               onDataChanged={handleDataChanged} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
@@ -144,12 +151,14 @@ function MainApp() {
             <ReadinessView 
               key={`readiness-${refreshTrigger}`}
               onNavigateToPortfolio={() => setActiveTab('portfolio')} 
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 
           {activeTab === 'portfolio' && (
             <PortfolioView 
               key={`portfolio-${refreshTrigger}`}
+              onNavigate={(tab) => setActiveTab(tab)}
             />
           )}
 

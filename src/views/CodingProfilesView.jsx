@@ -12,11 +12,12 @@ import {
   Flame, 
   TrendingUp, 
   Sparkles, 
-  Layers 
+  Layers,
+  ArrowLeft
 } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 
-export default function CodingProfilesView({ onDataChanged }) {
+export default function CodingProfilesView({ onDataChanged, onNavigate }) {
   const [codingData, setCodingData] = useState(null);
   const [loading, setLoading] = useState(true);
   
@@ -129,13 +130,36 @@ export default function CodingProfilesView({ onDataChanged }) {
               Connect your public GitHub and LeetCode accounts to provide undeniable proof of code commits, language distribution, algorithms mastery, and contest rankings.
             </p>
           </div>
+
+          {onNavigate && (
+            <button
+              type="button"
+              onClick={() => onNavigate('dashboard')}
+              className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 shrink-0"
+            >
+              <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Back to Dashboard</span>
+            </button>
+          )}
         </div>
 
         {/* Feedback alerts */}
         {successMsg && (
-          <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex items-center space-x-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>{successMsg}</span>
+          <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center space-x-2">
+              <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+              <span>{successMsg}</span>
+            </div>
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1 transition shadow-sm"
+              >
+                <ArrowLeft className="w-3 h-3" />
+                <span>Return to Dashboard</span>
+              </button>
+            )}
           </div>
         )}
 

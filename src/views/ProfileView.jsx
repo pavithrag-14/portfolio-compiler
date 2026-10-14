@@ -14,15 +14,16 @@ import {
   AlertCircle, 
   Save, 
   Sparkles,
-  RefreshCw
+  RefreshCw,
+  ArrowLeft,
+  RotateCcw
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
 
-export default function ProfileView({ onProfileUpdated }) {
+export default function ProfileView({ onProfileUpdated, onNavigate }) {
   const { user, profile: authProfile, refreshUser } = useAuth();
   
-  // Note: All state fields start strictly empty or with actual loaded profile data.
-  // NO random fake values (like 'John Doe') are pre-populated!
+  // Inputs start clean by default so students are never forced to use dummy data.
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -52,7 +53,9 @@ export default function ProfileView({ onProfileUpdated }) {
     setLoading(true);
     try {
       const res = await api.profile.get();
-      if (res && res.profile) {
+      // Only auto-fill if the student has explicitly saved their custom profile previously.
+      // Otherwise keep inputs clean and blank, with blurred example hints.
+      if (res && res.profile && res.profile.hasCustomSaved) {
         setFormData({
           fullName: res.profile.fullName || '',
           email: res.profile.email || user?.email || '',
@@ -67,6 +70,23 @@ export default function ProfileView({ onProfileUpdated }) {
           headline: res.profile.headline || '',
           aboutMe: res.profile.aboutMe || '',
           avatarUrl: res.profile.avatarUrl || ''
+        });
+      } else {
+        // Start completely clean & unfilled
+        setFormData({
+          fullName: '',
+          email: user?.email || '',
+          phone: '',
+          college: '',
+          degree: '',
+          department: '',
+          graduationYear: '',
+          location: '',
+          linkedinUrl: '',
+          githubUrl: '',
+          headline: '',
+          aboutMe: '',
+          avatarUrl: ''
         });
       }
     } catch (err) {
@@ -85,6 +105,42 @@ export default function ProfileView({ onProfileUpdated }) {
     }));
   };
 
+  const handleFillExamples = () => {
+    setFormData({
+      fullName: 'Neshat V.',
+      email: user?.email || 'neshat@portfolio.ai',
+      phone: '+91 98765 43210',
+      college: 'National Institute of Technology',
+      degree: 'B.Tech in Computer Science',
+      department: 'Computer Science and Engineering',
+      graduationYear: '2026',
+      location: 'Bangalore, India',
+      linkedinUrl: 'https://linkedin.com/in/neshat-demo',
+      githubUrl: 'https://github.com/neshat-developer',
+      headline: 'Aspiring UI/UX Designer & Full-Stack Developer',
+      aboutMe: 'Passionate computer science undergraduate with experience in React, UI/UX architecture, and real-time telemetry.',
+      avatarUrl: ''
+    });
+  };
+
+  const handleClearAll = () => {
+    setFormData({
+      fullName: '',
+      email: '',
+      phone: '',
+      college: '',
+      degree: '',
+      department: '',
+      graduationYear: '',
+      location: '',
+      linkedinUrl: '',
+      githubUrl: '',
+      headline: '',
+      aboutMe: '',
+      avatarUrl: ''
+    });
+  };
+
   const handleSave = async (e) => {
     e.preventDefault();
     setSaving(true);
@@ -92,11 +148,14 @@ export default function ProfileView({ onProfileUpdated }) {
     setSuccessMsg('');
 
     try {
-      const res = await api.profile.update(formData);
-      setSuccessMsg(`Profile saved successfully! Completion: ${res.completionPercentage}%`);
+      const res = await api.profile.update({ ...formData, hasCustomSaved: true });
+      setSuccessMsg(`Profile saved successfully! Completion: ${res.completionPercentage}%. Returning to dashboard in 2s...`);
       if (refreshUser) refreshUser();
       if (onProfileUpdated) onProfileUpdated();
-      setTimeout(() => setSuccessMsg(''), 4000);
+      
+      setTimeout(() => {
+        if (onNavigate) onNavigate('dashboard');
+      }, 2000);
     } catch (err) {
       setErrorMsg(err.message || 'Failed to save profile');
     } finally {
@@ -116,7 +175,7 @@ export default function ProfileView({ onProfileUpdated }) {
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       
-      {/* Header */}
+      {/* Top Header Card */}
       <div className="p-6 bg-slate-900/80 border border-cyan-500/20 rounded-2xl">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center space-x-3.5">
@@ -124,27 +183,70 @@ export default function ProfileView({ onProfileUpdated }) {
               <User className="w-6 h-6 text-slate-950" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-slate-100">Student Profile Settings</h1>
-              <p className="text-xs text-slate-400">
-                Personal and academic profile details. Initial registration does not force unnecessary data.
+              <div className="flex items-center space-x-2">
+                <h1 className="text-xl font-bold text-slate-100">Student Profile Settings</h1>
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                  Clean Form • Example Hints
+                </span>
+              </div>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Fields are left clean for your real details. Sample data is displayed as mild blurred hints below each field.
               </p>
             </div>
           </div>
-          <button
-            onClick={loadProfile}
-            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5"
-          >
-            <RefreshCw className="w-3.5 h-3.5" />
-            <span>Reset / Reload</span>
-          </button>
+
+          <div className="flex flex-wrap items-center gap-2">
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('dashboard')}
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+              >
+                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Back to Dashboard</span>
+              </button>
+            )}
+
+            <button
+              type="button"
+              onClick={handleFillExamples}
+              className="px-3 py-1.5 rounded-lg bg-cyan-950/60 hover:bg-cyan-900/60 text-cyan-300 border border-cyan-500/40 text-xs font-semibold flex items-center space-x-1.5 transition"
+              title="Quickly fill sample details for testing"
+            >
+              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Fill Sample</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={handleClearAll}
+              className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-slate-200 text-xs font-semibold flex items-center space-x-1 transition"
+              title="Clear all fields"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Clear</span>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Alerts */}
+      {/* Success Notification Alert with Direct Back to Dashboard Action */}
       {successMsg && (
-        <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex items-center space-x-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-          <span>{successMsg}</span>
+        <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex flex-wrap items-center justify-between gap-3 animate-fadeIn">
+          <div className="flex items-center space-x-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span className="font-medium">{successMsg}</span>
+          </div>
+          {onNavigate && (
+            <button
+              type="button"
+              onClick={() => onNavigate('dashboard')}
+              className="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1 transition shadow-sm"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Dashboard Now</span>
+            </button>
+          )}
         </div>
       )}
 
@@ -158,13 +260,14 @@ export default function ProfileView({ onProfileUpdated }) {
       {/* Main Profile Form */}
       <form onSubmit={handleSave} className="p-6 bg-slate-900/70 border border-slate-800 rounded-2xl space-y-6">
         
-        {/* Basic Contact Info */}
+        {/* 1. Basic Contact Info */}
         <div>
           <h2 className="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-4 flex items-center space-x-2">
             <span>1. Contact & Identity</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             
+            {/* Full Name */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Full Name
@@ -176,12 +279,19 @@ export default function ProfileView({ onProfileUpdated }) {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  placeholder="e.g. Alex Morgan"
+                  placeholder="Enter your full name..."
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
               </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  Neshat V. (or Alex Morgan)
+                </span>
+              </div>
             </div>
 
+            {/* Email Address */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Email Address
@@ -193,12 +303,19 @@ export default function ProfileView({ onProfileUpdated }) {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  placeholder="e.g. alex@university.edu"
+                  placeholder="Enter your email address..."
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
               </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  candidate@university.edu
+                </span>
+              </div>
             </div>
 
+            {/* Phone Number */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Phone Number
@@ -210,12 +327,19 @@ export default function ProfileView({ onProfileUpdated }) {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="e.g. +1 555-0199"
+                  placeholder="Enter phone number..."
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
               </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  +91 98765 43210
+                </span>
+              </div>
             </div>
 
+            {/* Location */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Location (City, Country)
@@ -227,22 +351,29 @@ export default function ProfileView({ onProfileUpdated }) {
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
-                  placeholder="e.g. San Francisco, CA"
+                  placeholder="Enter city, state or country..."
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
+              </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  Bangalore, India
+                </span>
               </div>
             </div>
 
           </div>
         </div>
 
-        {/* Academic Details */}
+        {/* 2. Academic Details */}
         <div className="pt-4 border-t border-slate-800">
           <h2 className="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-4 flex items-center space-x-2">
             <span>2. College & University Education</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             
+            {/* College */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 College / University
@@ -254,12 +385,19 @@ export default function ProfileView({ onProfileUpdated }) {
                   name="college"
                   value={formData.college}
                   onChange={handleChange}
-                  placeholder="e.g. MIT / Anna University"
+                  placeholder="Enter college or university name..."
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
               </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  National Institute of Technology
+                </span>
+              </div>
             </div>
 
+            {/* Degree Program */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Degree Program
@@ -271,12 +409,19 @@ export default function ProfileView({ onProfileUpdated }) {
                   name="degree"
                   value={formData.degree}
                   onChange={handleChange}
-                  placeholder="e.g. Bachelor of Technology (B.Tech)"
+                  placeholder="Enter degree program..."
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
               </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  B.Tech in Computer Science
+                </span>
+              </div>
             </div>
 
+            {/* Department */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Department / Major
@@ -286,11 +431,18 @@ export default function ProfileView({ onProfileUpdated }) {
                 name="department"
                 value={formData.department}
                 onChange={handleChange}
-                placeholder="e.g. Computer Science and Engineering"
+                placeholder="Enter department or major..."
                 className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
               />
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  Computer Science and Engineering
+                </span>
+              </div>
             </div>
 
+            {/* Graduation Year */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Graduation Year
@@ -306,18 +458,25 @@ export default function ProfileView({ onProfileUpdated }) {
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
               </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  2026
+                </span>
+              </div>
             </div>
 
           </div>
         </div>
 
-        {/* Professional Profiles */}
+        {/* 3. Professional Profiles */}
         <div className="pt-4 border-t border-slate-800">
           <h2 className="text-sm font-bold text-cyan-400 uppercase tracking-wider mb-4 flex items-center space-x-2">
             <span>3. Links & Headline</span>
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             
+            {/* LinkedIn */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 LinkedIn Profile URL
@@ -329,12 +488,19 @@ export default function ProfileView({ onProfileUpdated }) {
                   name="linkedinUrl"
                   value={formData.linkedinUrl}
                   onChange={handleChange}
-                  placeholder="https://linkedin.com/in/username"
+                  placeholder="Paste your LinkedIn URL..."
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
               </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  https://linkedin.com/in/yourname
+                </span>
+              </div>
             </div>
 
+            {/* GitHub */}
             <div>
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 GitHub Profile URL
@@ -346,12 +512,19 @@ export default function ProfileView({ onProfileUpdated }) {
                   name="githubUrl"
                   value={formData.githubUrl}
                   onChange={handleChange}
-                  placeholder="https://github.com/username"
+                  placeholder="Paste your GitHub URL..."
                   className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl pl-9 pr-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
                 />
               </div>
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  https://github.com/yourusername
+                </span>
+              </div>
             </div>
 
+            {/* Headline */}
             <div className="md:col-span-2">
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 Short Professional Headline
@@ -361,11 +534,18 @@ export default function ProfileView({ onProfileUpdated }) {
                 name="headline"
                 value={formData.headline}
                 onChange={handleChange}
-                placeholder="e.g. Aspiring Full Stack Engineer | React & Node.js Specialist"
+                placeholder="Enter professional headline..."
                 className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
               />
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  Aspiring UI/UX Designer & Full-Stack Developer
+                </span>
+              </div>
             </div>
 
+            {/* About Me */}
             <div className="md:col-span-2">
               <label className="block text-xs font-medium text-slate-300 mb-1.5">
                 About Me (Bio)
@@ -375,16 +555,33 @@ export default function ProfileView({ onProfileUpdated }) {
                 rows={4}
                 value={formData.aboutMe}
                 onChange={handleChange}
-                placeholder="Share your technical interests, passion projects, and career aspirations..."
+                placeholder="Write a brief bio about your interests, technical goals, and background..."
                 className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-3 text-sm text-slate-100 placeholder:text-slate-600 outline-none"
               />
+              <div className="flex items-center space-x-1.5 mt-1.5 text-[11px] text-slate-500">
+                <span className="font-medium text-slate-400">Example:</span>
+                <span className="text-slate-400/80 italic blur-[0.6px] hover:blur-none select-none transition-all duration-200 cursor-help" title="Hover to view unblurred text">
+                  Passionate computer science undergraduate with experience in React, UI/UX architecture, and real-time telemetry.
+                </span>
+              </div>
             </div>
 
           </div>
         </div>
 
-        {/* Save Button */}
-        <div className="pt-4 flex justify-end">
+        {/* Form Action Buttons */}
+        <div className="pt-4 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-3">
+          {onNavigate ? (
+            <button
+              type="button"
+              onClick={() => onNavigate('dashboard')}
+              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs flex items-center space-x-1.5 transition border border-slate-700"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Back to Dashboard</span>
+            </button>
+          ) : <div />}
+
           <button
             type="submit"
             disabled={saving}
