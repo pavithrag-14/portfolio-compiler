@@ -520,6 +520,25 @@ export default function PortfolioView({ onNavigate }) {
         } : {}}
       />
 
+      {/* Workflow Navigation Footer - Step 10 Completion */}
+      <div className="p-5 bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-emerald-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-emerald-400 font-bold">Step 10 of 10 Completed • Portfolio Ready</span>
+          <h4 className="text-sm font-bold text-slate-100">Congratulations! Your Verified Engineering Portfolio is live</h4>
+          <p className="text-xs text-slate-400">All 10 steps of the compiler process have been executed with cryptographic authenticity.</p>
+        </div>
+        {onNavigate && (
+          <button
+            type="button"
+            onClick={() => onNavigate('dashboard')}
+            className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 font-bold text-xs flex items-center space-x-2 transition border border-cyan-500/30 shadow-md shrink-0 cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            <span>Return to Central Dashboard</span>
+          </button>
+        )}
+      </div>
+
     </div>
   );
 }

@@ -16,7 +16,8 @@ import {
   Clock, 
   Users, 
   Cpu,
-  ArrowLeft
+  ArrowLeft,
+  ChevronRight
 } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 
@@ -244,14 +245,24 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
 
           <div className="flex flex-wrap items-center gap-2">
             {onNavigate && (
-              <button
-                type="button"
-                onClick={() => onNavigate('dashboard')}
-                className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
-              >
-                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Back to Dashboard</span>
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('dashboard')}
+                  className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Dashboard</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('coding')}
+                  className="px-3.5 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-semibold flex items-center space-x-1.5 transition cursor-pointer"
+                >
+                  <span>Next: Coding Profiles</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </>
             )}
 
             <button
@@ -274,13 +285,25 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
         </div>
 
         {feedback.msg && (
-          <div className={`mt-4 p-3 rounded-xl text-xs flex items-center space-x-2 ${
+          <div className={`mt-4 p-3 rounded-xl text-xs flex flex-wrap items-center justify-between gap-2 ${
             feedback.type === 'success' 
               ? 'bg-emerald-950/40 border border-emerald-500/40 text-emerald-200' 
               : 'bg-red-950/40 border border-red-500/40 text-red-200'
           }`}>
-            {feedback.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <AlertCircle className="w-4 h-4 text-red-400" />}
-            <span>{feedback.msg}</span>
+            <div className="flex items-center space-x-2">
+              {feedback.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <AlertCircle className="w-4 h-4 text-red-400" />}
+              <span>{feedback.msg}</span>
+            </div>
+            {onNavigate && feedback.type === 'success' && (
+              <button
+                type="button"
+                onClick={() => onNavigate('coding')}
+                className="px-3 py-1.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm cursor-pointer"
+              >
+                <span>Next: Coding Profiles</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
         )}
       </div>
@@ -701,6 +724,25 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
           </div>
         </div>
       )}
+
+      {/* Workflow Navigation Footer */}
+      <div className="p-5 bg-slate-900/80 border border-cyan-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Step 4 of 10 Completed</span>
+          <h4 className="text-sm font-bold text-slate-100">Ready to link your developer activity?</h4>
+          <p className="text-xs text-slate-400">Proceed to Step 5 to connect your GitHub repositories and LeetCode problem solving profiles.</p>
+        </div>
+        {onNavigate && (
+          <button
+            type="button"
+            onClick={() => onNavigate('coding')}
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-md glow-cyan shrink-0 cursor-pointer"
+          >
+            <span>Proceed to Step 5: Coding Profiles</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        )}
+      </div>
 
     </div>
   );

@@ -16,6 +16,7 @@ import {
   Sparkles,
   RefreshCw,
   ArrowLeft,
+  ArrowRight,
   RotateCcw
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
@@ -149,12 +150,12 @@ export default function ProfileView({ onProfileUpdated, onNavigate }) {
 
     try {
       const res = await api.profile.update({ ...formData, hasCustomSaved: true });
-      setSuccessMsg(`Profile saved successfully! Completion: ${res.completionPercentage}%. Returning to dashboard in 2s...`);
+      setSuccessMsg(`Profile saved successfully! Proceeding to Academic Records in 2s...`);
       if (refreshUser) refreshUser();
       if (onProfileUpdated) onProfileUpdated();
       
       setTimeout(() => {
-        if (onNavigate) onNavigate('dashboard');
+        if (onNavigate) onNavigate('academics');
       }, 2000);
     } catch (err) {
       setErrorMsg(err.message || 'Failed to save profile');
@@ -197,14 +198,24 @@ export default function ProfileView({ onProfileUpdated, onNavigate }) {
 
           <div className="flex flex-wrap items-center gap-2">
             {onNavigate && (
-              <button
-                type="button"
-                onClick={() => onNavigate('dashboard')}
-                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
-              >
-                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Back to Dashboard</span>
-              </button>
+              <>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('dashboard')}
+                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Dashboard</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('academics')}
+                  className="px-3 py-1.5 rounded-lg bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-semibold flex items-center space-x-1.5 transition cursor-pointer"
+                >
+                  <span>Next: Academic Records</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </>
             )}
 
             <button
@@ -230,7 +241,7 @@ export default function ProfileView({ onProfileUpdated, onNavigate }) {
         </div>
       </div>
 
-      {/* Success Notification Alert with Direct Back to Dashboard Action */}
+      {/* Success Notification Alert with Direct Next Step Action */}
       {successMsg && (
         <div className="p-4 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex flex-wrap items-center justify-between gap-3 animate-fadeIn">
           <div className="flex items-center space-x-2">
@@ -240,11 +251,11 @@ export default function ProfileView({ onProfileUpdated, onNavigate }) {
           {onNavigate && (
             <button
               type="button"
-              onClick={() => onNavigate('dashboard')}
-              className="px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1 transition shadow-sm"
+              onClick={() => onNavigate('academics')}
+              className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm"
             >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Dashboard Now</span>
+              <span>Next: Academic Records</span>
+              <ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
@@ -575,28 +586,60 @@ export default function ProfileView({ onProfileUpdated, onNavigate }) {
             <button
               type="button"
               onClick={() => onNavigate('dashboard')}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs flex items-center space-x-1.5 transition border border-slate-700"
+              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs flex items-center space-x-1.5 transition border border-slate-700"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Back to Dashboard</span>
+              <span>Dashboard</span>
             </button>
           ) : <div />}
 
-          <button
-            type="submit"
-            disabled={saving}
-            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm flex items-center space-x-2 transition shadow-md glow-cyan disabled:opacity-50"
-          >
-            {saving ? (
-              <span className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-slate-950 border-t-transparent" />
-            ) : (
-              <Save className="w-4 h-4" />
+          <div className="flex items-center space-x-2.5">
+            <button
+              type="submit"
+              disabled={saving}
+              className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm flex items-center space-x-2 transition shadow-md glow-cyan disabled:opacity-50"
+            >
+              {saving ? (
+                <span className="inline-block animate-spin rounded-full h-4 w-4 border-2 border-slate-950 border-t-transparent" />
+              ) : (
+                <Save className="w-4 h-4" />
+              )}
+              <span>Save Profile</span>
+            </button>
+
+            {onNavigate && (
+              <button
+                type="button"
+                onClick={() => onNavigate('academics')}
+                className="px-4 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm"
+              >
+                <span>Next: Academic Records</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             )}
-            <span>Save Profile</span>
-          </button>
+          </div>
         </div>
 
       </form>
+
+      {/* Workflow Navigation Footer */}
+      <div className="p-5 bg-slate-900/80 border border-cyan-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Step 1 of 10 Completed</span>
+          <h4 className="text-sm font-bold text-slate-100">Ready to upload semester marksheets?</h4>
+          <p className="text-xs text-slate-400">Proceed to Step 2 to upload transcript PDFs and calculate independent CGPA.</p>
+        </div>
+        {onNavigate && (
+          <button
+            type="button"
+            onClick={() => onNavigate('academics')}
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-md glow-cyan shrink-0 cursor-pointer"
+          >
+            <span>Proceed to Step 2: Academic Records</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        )}
+      </div>
 
     </div>
   );

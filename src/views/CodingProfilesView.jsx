@@ -13,7 +13,8 @@ import {
   TrendingUp, 
   Sparkles, 
   Layers,
-  ArrowLeft
+  ArrowLeft,
+  ChevronRight
 } from 'lucide-react';
 import { GithubIcon } from '../components/SocialIcons';
 
@@ -131,16 +132,28 @@ export default function CodingProfilesView({ onDataChanged, onNavigate }) {
             </p>
           </div>
 
-          {onNavigate && (
-            <button
-              type="button"
-              onClick={() => onNavigate('dashboard')}
-              className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700 shrink-0"
-            >
-              <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Back to Dashboard</span>
-            </button>
-          )}
+          <div className="flex flex-wrap items-center gap-2 shrink-0">
+            {onNavigate && (
+              <>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('dashboard')}
+                  className="px-3.5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                  <span>Dashboard</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('roles')}
+                  className="px-3.5 py-2.5 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-semibold flex items-center space-x-1.5 transition cursor-pointer"
+                >
+                  <span>Next: Target Role</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </button>
+              </>
+            )}
+          </div>
         </div>
 
         {/* Feedback alerts */}
@@ -153,11 +166,11 @@ export default function CodingProfilesView({ onDataChanged, onNavigate }) {
             {onNavigate && (
               <button
                 type="button"
-                onClick={() => onNavigate('dashboard')}
-                className="px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1 transition shadow-sm"
+                onClick={() => onNavigate('roles')}
+                className="px-3 py-1.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm cursor-pointer"
               >
-                <ArrowLeft className="w-3 h-3" />
-                <span>Return to Dashboard</span>
+                <span>Next: Target Role</span>
+                <ChevronRight className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
@@ -384,6 +397,25 @@ export default function CodingProfilesView({ onDataChanged, onNavigate }) {
           </div>
         </div>
 
+      </div>
+
+      {/* Workflow Navigation Footer */}
+      <div className="p-5 bg-slate-900/80 border border-cyan-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Step 5 of 10 Completed</span>
+          <h4 className="text-sm font-bold text-slate-100">Ready to choose your target engineering role?</h4>
+          <p className="text-xs text-slate-400">Proceed to Step 6 to select your desired career benchmark from 11 specialized engineering roles.</p>
+        </div>
+        {onNavigate && (
+          <button
+            type="button"
+            onClick={() => onNavigate('roles')}
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-md glow-cyan shrink-0 cursor-pointer"
+          >
+            <span>Proceed to Step 6: Target Role</span>
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        )}
       </div>
 
     </div>

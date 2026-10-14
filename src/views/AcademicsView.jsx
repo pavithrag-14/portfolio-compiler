@@ -17,7 +17,8 @@ import {
   RefreshCw,
   Eye,
   Trash2,
-  ArrowLeft
+  ArrowLeft,
+  ArrowRight
 } from 'lucide-react';
 
 const SEMESTERS = [
@@ -193,17 +194,27 @@ export default function AcademicsView({ onDataChanged, onNavigate }) {
             </p>
           </div>
 
-          {/* Quick CGPA Card & Dashboard Back Button */}
+          {/* Quick CGPA Card & Navigation */}
           <div className="flex flex-col sm:flex-row items-end sm:items-center gap-3 shrink-0">
             {onNavigate && (
-              <button
-                type="button"
-                onClick={() => onNavigate('dashboard')}
-                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
-              >
-                <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Back to Dashboard</span>
-              </button>
+              <div className="flex items-center space-x-2">
+                <button
+                  type="button"
+                  onClick={() => onNavigate('dashboard')}
+                  className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs flex items-center space-x-1.5 transition border border-slate-700"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Dashboard</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('certifications')}
+                  className="px-3.5 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm"
+                >
+                  <span>Next: Certifications</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
             )}
 
             <div className="flex items-center space-x-4 bg-slate-950 p-4 rounded-xl border border-slate-800">
@@ -244,7 +255,7 @@ export default function AcademicsView({ onDataChanged, onNavigate }) {
 
         {/* Feedback messages */}
         {uploadSuccess && (
-          <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex flex-wrap items-center justify-between gap-2">
+          <div className="mt-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-500/40 text-emerald-200 text-xs flex flex-wrap items-center justify-between gap-2 animate-fadeIn">
             <div className="flex items-center space-x-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>{uploadSuccess}</span>
@@ -252,11 +263,11 @@ export default function AcademicsView({ onDataChanged, onNavigate }) {
             {onNavigate && (
               <button
                 type="button"
-                onClick={() => onNavigate('dashboard')}
-                className="px-2.5 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1 transition shadow-sm"
+                onClick={() => onNavigate('certifications')}
+                className="px-3.5 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm"
               >
-                <ArrowLeft className="w-3 h-3" />
-                <span>Return to Dashboard</span>
+                <span>Proceed to Step 3: Certifications</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             )}
           </div>
@@ -623,6 +634,25 @@ export default function AcademicsView({ onDataChanged, onNavigate }) {
           </div>
         </div>
       )}
+
+      {/* Workflow Navigation Footer */}
+      <div className="p-5 bg-slate-900/80 border border-cyan-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Step 2 of 10 Completed</span>
+          <h4 className="text-sm font-bold text-slate-100">Academic records & CGPA verified!</h4>
+          <p className="text-xs text-slate-400">Proceed to Step 3 to add professional certificates or authority credentials.</p>
+        </div>
+        {onNavigate && (
+          <button
+            type="button"
+            onClick={() => onNavigate('certifications')}
+            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-md glow-cyan shrink-0 cursor-pointer"
+          >
+            <span>Proceed to Step 3: Certifications</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        )}
+      </div>
 
     </div>
   );

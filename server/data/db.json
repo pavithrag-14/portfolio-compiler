@@ -35,10 +35,11 @@
       "location": "Bangalore, India",
       "linkedinUrl": "https://linkedin.com/in/neshat-demo",
       "githubUrl": "https://github.com/neshat-demo",
-      "headline": "AI Portfolio Architect & Systems Engineer",
+      "headline": "Full Stack Developer Candidate",
       "aboutMe": "Passionate about human-centered design systems, high-concurrency microservices, and cryptographic credential integrity.",
-      "targetRoleId": "ui-ux-designer",
-      "avatarUrl": ""
+      "targetRoleId": "fullstack-developer",
+      "avatarUrl": "",
+      "updatedAt": "2026-10-14T16:31:52.081Z"
     },
     {
       "userId": "usr_1791473716354_u7xm2",
@@ -53,13 +54,14 @@
       "location": "Erode",
       "linkedInUrl": "",
       "githubUrl": "https://github.com/pavithrag-14",
-      "headline": "Cloud & DevOps Engineer Candidate",
-      "aboutMe": "Full Stack Developer with knowledge of designing, developing, testing, and maintaining end-to-end web applications. Skilled in front-end and back-end technologies, database management, REST API integration, version control, and application deployment. Focused on building scalable, secure, responsive, and user-friendly applications.",
-      "targetRoleId": "cloud-devops-engineer",
+      "headline": "Frontend Developer Candidate",
+      "aboutMe": "have a great passionate in full stack development\n",
+      "targetRoleId": "frontend-developer",
       "createdAt": "2026-10-08T15:35:17.764Z",
-      "updatedAt": "2026-10-14T15:22:34.629Z",
+      "updatedAt": "2026-10-14T16:55:41.461Z",
       "linkedinUrl": "https://www.linkedin.com/in/pavithra-g-79217b366/",
-      "avatarUrl": ""
+      "avatarUrl": "",
+      "hasCustomSaved": true
     },
     {
       "userId": "usr_1791560036307_dkfbz",
@@ -159,147 +161,16 @@
     },
     {
       "userId": "usr_1791473716354_u7xm2",
-      "status": "Academic Records Updated",
-      "sem1Status": "Uploaded & Verified",
-      "marksheets": [
-        {
-          "id": "ms_sem1_1791558100156",
-          "semester": "sem1",
-          "fileName": "sem1 marks.pdf",
-          "filePath": "/uploads/academics/usr_1791473716354_u7xm2-marksheet-1791558100107-572047099.pdf",
-          "fileSize": "169.0 KB",
-          "uploadDate": "2026-10-09T15:01:40.156Z",
-          "status": "Verified",
-          "isVerified": true,
-          "extractedData": {
-            "studentName": "PAVITHRA G",
-            "rollNumber": "NIT2022CS869",
-            "registerNumber": "NIT2022CS882",
-            "college": "Bannari amman institute of technology",
-            "degree": "Bachelor of Engineering(B.E)",
-            "department": "Computer Science And Engineering",
-            "semester": "Semester 1",
-            "subjects": [
-              {
-                "code": "CS101",
-                "name": "Introduction to Computing & Logic",
-                "credits": 4,
-                "grade": "A+",
-                "gradePoint": 9,
-                "status": "PASS"
-              },
-              {
-                "code": "MA101",
-                "name": "Engineering Mathematics I: Calculus & Matrices",
-                "credits": 4,
-                "grade": "A",
-                "gradePoint": 8.5,
-                "status": "PASS"
-              },
-              {
-                "code": "PH101",
-                "name": "Engineering Physics & Semiconductors",
-                "credits": 4,
-                "grade": "A+",
-                "gradePoint": 9,
-                "status": "PASS"
-              },
-              {
-                "code": "EE101",
-                "name": "Basic Electrical & Electronics Engineering",
-                "credits": 3,
-                "grade": "A",
-                "gradePoint": 8.5,
-                "status": "PASS"
-              },
-              {
-                "code": "CS102",
-                "name": "Programming Laboratory in C",
-                "credits": 2,
-                "grade": "O",
-                "gradePoint": 10,
-                "status": "PASS"
-              }
-            ],
-            "sgpa": 8.91,
-            "cgpa": 8.91,
-            "backlogs": 0,
-            "passFailStatus": "PASS"
-          }
-        },
-        {
-          "id": "ms_sem2_1791558797901",
-          "semester": "sem2",
-          "fileName": "sem1 marks.pdf",
-          "filePath": "/uploads/academics/usr_1791473716354_u7xm2-marksheet-1791558797724-868058285.pdf",
-          "fileSize": "169.0 KB",
-          "uploadDate": "2026-10-09T15:13:17.901Z",
-          "status": "Verified",
-          "isVerified": true,
-          "extractedData": {
-            "studentName": "PAVITHRA G",
-            "rollNumber": "NIT2022CS953",
-            "registerNumber": "NIT2022CS864",
-            "college": "Bannari amman institute of technology",
-            "degree": "Bachelor of Engineering(B.E)",
-            "department": "Computer Science And Engineering",
-            "semester": "Semester 2",
-            "subjects": [
-              {
-                "code": "CS201",
-                "name": "Data Structures and Algorithms",
-                "credits": 4,
-                "grade": "A+",
-                "gradePoint": 9.5,
-                "status": "PASS"
-              },
-              {
-                "code": "MA201",
-                "name": "Discrete Mathematical Structures",
-                "credits": 4,
-                "grade": "A",
-                "gradePoint": 9,
-                "status": "PASS"
-              },
-              {
-                "code": "CS202",
-                "name": "Digital Logic & Computer Organization",
-                "credits": 4,
-                "grade": "A",
-                "gradePoint": 8.5,
-                "status": "PASS"
-              },
-              {
-                "code": "CS203",
-                "name": "Object Oriented Programming with C++",
-                "credits": 3,
-                "grade": "O",
-                "gradePoint": 10,
-                "status": "PASS"
-              },
-              {
-                "code": "CS204",
-                "name": "Data Structures Lab",
-                "credits": 2,
-                "grade": "A+",
-                "gradePoint": 9.5,
-                "status": "PASS"
-              }
-            ],
-            "sgpa": 9.24,
-            "cgpa": 9.24,
-            "backlogs": 0,
-            "passFailStatus": "PASS"
-          }
-        }
-      ],
-      "calculatedCgpa": 9.07,
-      "documentCgpa": 9.24,
-      "hasDiscrepancy": true,
-      "discrepancyNote": "Discrepancy Detected: Printed document CGPA is 9.24, but credit-weighted calculation across 34 subjects yields 9.07. Please inspect grades.",
+      "status": "Not Started",
+      "sem1Status": "Not Uploaded",
+      "marksheets": [],
+      "calculatedCgpa": null,
+      "documentCgpa": null,
+      "hasDiscrepancy": false,
+      "discrepancyNote": null,
       "verifiedDate": null,
-      "discrepancyDelta": 0.17,
-      "totalCreditsAnalyzed": 34
+      "discrepancyDelta": 0,
+      "totalCreditsAnalyzed": 0
     },
     {
       "userId": "usr_1791560036307_dkfbz",
