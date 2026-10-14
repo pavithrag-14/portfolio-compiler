@@ -53,11 +53,11 @@
       "location": "Erode",
       "linkedInUrl": "",
       "githubUrl": "https://github.com/pavithrag-14",
-      "headline": "Full Stack developer",
+      "headline": "Cloud & DevOps Engineer Candidate",
       "aboutMe": "Full Stack Developer with knowledge of designing, developing, testing, and maintaining end-to-end web applications. Skilled in front-end and back-end technologies, database management, REST API integration, version control, and application deployment. Focused on building scalable, secure, responsive, and user-friendly applications.",
-      "targetRoleId": "fullstack-developer",
+      "targetRoleId": "cloud-devops-engineer",
       "createdAt": "2026-10-08T15:35:17.764Z",
-      "updatedAt": "2026-10-09T15:37:26.530Z",
+      "updatedAt": "2026-10-14T15:22:34.629Z",
       "linkedinUrl": "https://www.linkedin.com/in/pavithra-g-79217b366/",
       "avatarUrl": ""
     },
@@ -400,50 +400,6 @@
         "Figma"
       ],
       "verificationEvidence": "Cryptographically validated against Coursera public certificate registry."
-    },
-    {
-      "id": "cert_1791558333538_mb9l",
-      "userId": "usr_1791473716354_u7xm2",
-      "title": "eCertificate",
-      "studentName": "",
-      "issuer": "Accredited Issuer",
-      "certificateId": "CERT-333533",
-      "issueDate": "2026-10-09",
-      "expiryDate": "",
-      "courseName": "eCertificate",
-      "duration": "40 hours",
-      "scoreGrade": "95%",
-      "credentialUrl": "",
-      "verificationUrl": "",
-      "qrCodeData": "",
-      "filePath": "/uploads/certifications/usr_1791473716354_u7xm2-cert-1791558333099-306620657.pdf",
-      "fileName": "eCertificate.pdf",
-      "status": "Pending Verification",
-      "verificationEvidence": "Certificate ID submitted; awaiting origin registry synchronization.",
-      "skillsVerified": [],
-      "uploadedAt": "2026-10-09T15:05:33.538Z"
-    },
-    {
-      "id": "cert_1791558348828_v8hl",
-      "userId": "usr_1791473716354_u7xm2",
-      "title": "Alison certificate",
-      "studentName": "",
-      "issuer": "Accredited Issuer",
-      "certificateId": "CERT-348828",
-      "issueDate": "2026-10-09",
-      "expiryDate": "",
-      "courseName": "Alison certificate",
-      "duration": "40 hours",
-      "scoreGrade": "95%",
-      "credentialUrl": "",
-      "verificationUrl": "",
-      "qrCodeData": "",
-      "filePath": "/uploads/certifications/usr_1791473716354_u7xm2-cert-1791558348811-673351465.pdf",
-      "fileName": "Alison certificate.pdf",
-      "status": "Pending Verification",
-      "verificationEvidence": "Certificate ID submitted; awaiting origin registry synchronization.",
-      "skillsVerified": [],
-      "uploadedAt": "2026-10-09T15:05:48.828Z"
     },
     {
       "id": "cert_1791561069391_05pd",
@@ -861,6 +817,13 @@
           "score": 80,
           "correctCount": 40,
           "incorrectCount": 10
+        },
+        {
+          "attemptNumber": 1,
+          "date": "2026-10-14T15:20:13.788Z",
+          "score": 80,
+          "correctCount": 40,
+          "incorrectCount": 10
         }
       ],
       "status": "Completed",
@@ -933,7 +896,7 @@
         "q2": 1,
         "q1": 0
       },
-      "completedAt": "2026-10-09T14:44:54.580Z"
+      "completedAt": "2026-10-14T15:20:13.788Z"
     }
   ],
   "interviewSessions": [

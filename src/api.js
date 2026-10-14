@@ -73,6 +73,7 @@ export const api = {
     getRecords: () => request('/academic/records'),
     uploadMarksheet: (formData) => request('/academic/upload-marksheet', { method: 'POST', body: formData }),
     updateSubject: (payload) => request('/academic/update-subject', { method: 'PUT', body: JSON.stringify(payload) }),
+    deleteMarksheet: (semester) => request(`/academic/marksheet/${semester}`, { method: 'DELETE' }),
   },
 
   // Certifications

@@ -15,7 +15,8 @@ import {
   GraduationCap, 
   Sparkles,
   RefreshCw,
-  Eye
+  Eye,
+  Trash2
 } from 'lucide-react';
 
 const SEMESTERS = [
@@ -37,6 +38,7 @@ export default function AcademicsView({ onDataChanged }) {
   const [fileToUpload, setFileToUpload] = useState(null);
   const [uploadError, setUploadError] = useState('');
   const [uploadSuccess, setUploadSuccess] = useState('');
+  const [deletingSem, setDeletingSem] = useState(null);
   
   // Subject edit modal state
   const [editingSubject, setEditingSubject] = useState(null); // { semester, subjectCode, subjectName, credits, grade, gradePoint }
@@ -83,6 +85,33 @@ export default function AcademicsView({ onDataChanged }) {
       setUploadError(err.message || 'Marksheet upload and extraction failed.');
     } finally {
       setUploadingSem(null);
+    }
+  };
+
+  const handleRemoveMarksheet = async (semesterId, semesterTitle) => {
+    const semName = semesterTitle || `Semester ${semesterId}`;
+    if (!window.confirm(`Are you sure you want to remove the marksheet for ${semName}? This will recalculate your CGPA and total credits.`)) {
+      return;
+    }
+
+    setUploadError('');
+    setUploadSuccess('');
+    setDeletingSem(semesterId);
+
+    try {
+      await api.academic.deleteMarksheet(semesterId);
+      setUploadSuccess(`Marksheet for ${semName} removed successfully.`);
+      if (fileToUpload && uploadingSem === semesterId) {
+        setFileToUpload(null);
+        setUploadingSem(null);
+      }
+      await loadAcademics();
+      if (onDataChanged) onDataChanged();
+      setTimeout(() => setUploadSuccess(''), 5000);
+    } catch (err) {
+      setUploadError(err.message || `Failed to remove ${semName} marksheet.`);
+    } finally {
+      setDeletingSem(null);
     }
   };
 
@@ -302,7 +331,7 @@ export default function AcademicsView({ onDataChanged }) {
                   {/* If Marksheet is uploaded */}
                   {isUploaded ? (
                     <div className="p-3 bg-slate-950/70 border border-slate-800 rounded-lg space-y-1.5 text-xs">
-                      <div className="flex justify-between">
+                      <div className="flex justify-between items-center">
                         <span className="text-slate-400">Status:</span>
                         <span className="text-emerald-400 font-semibold flex items-center">
                           <CheckCircle2 className="w-3 h-3 mr-1" /> Verified
@@ -320,6 +349,16 @@ export default function AcademicsView({ onDataChanged }) {
                         <span className="text-slate-400">Subjects Parsed:</span>
                         <span className="text-slate-200">{uploadedData.subjects?.length || 0}</span>
                       </div>
+                      {(uploadedData.fileName || uploadedData.filename) && (
+                        <div className="flex justify-between items-center text-[11px] pt-1.5 border-t border-slate-800/80">
+                          <span className="text-slate-500 flex items-center">
+                            <FileText className="w-3 h-3 mr-1 text-slate-400" /> File:
+                          </span>
+                          <span className="text-slate-300 font-mono truncate max-w-[130px]" title={uploadedData.fileName || uploadedData.filename}>
+                            {uploadedData.fileName || uploadedData.filename}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div className="p-3 bg-slate-950/30 border border-dashed border-slate-800 rounded-lg text-center">
@@ -330,14 +369,17 @@ export default function AcademicsView({ onDataChanged }) {
                   )}
                 </div>
 
-                {/* Upload action box */}
+                {/* Upload & Management action box */}
                 <div className="mt-4 pt-3 border-t border-slate-800/80">
                   <div className="flex items-center space-x-2">
                     <label className="flex-1 cursor-pointer">
                       <input
                         type="file"
                         accept=".pdf,.png,.jpg,.jpeg"
-                        onChange={(e) => setFileToUpload(e.target.files?.[0] || null)}
+                        onChange={(e) => {
+                          setFileToUpload(e.target.files?.[0] || null);
+                          setUploadingSem(sem.id);
+                        }}
                         className="hidden"
                       />
                       <div className="py-1.5 px-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs text-center truncate border border-slate-700">
@@ -351,23 +393,42 @@ export default function AcademicsView({ onDataChanged }) {
 
                     <button
                       type="button"
-                      disabled={isCurrentlyUploading}
+                      disabled={isCurrentlyUploading || deletingSem === sem.id}
                       onClick={() => handleFileUpload(sem.id)}
                       className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center space-x-1 shrink-0 ${
                         isUploaded
-                          ? 'bg-slate-800 hover:bg-slate-700 text-slate-200'
+                          ? 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'
                           : sem.isRequired
                           ? 'bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold'
                           : 'bg-cyan-600 hover:bg-cyan-500 text-white'
                       }`}
+                      title={isUploaded ? 'Upload replacement marksheet' : 'Upload marksheet'}
                     >
-                      {isCurrentlyUploading ? (
+                      {isCurrentlyUploading && uploadingSem === sem.id ? (
                         <span className="inline-block animate-spin rounded-full h-3.5 w-3.5 border-2 border-current border-t-transparent" />
                       ) : (
                         <Upload className="w-3.5 h-3.5" />
                       )}
                       <span>{isUploaded ? 'Update' : 'Upload'}</span>
                     </button>
+
+                    {/* Remove File Button */}
+                    {isUploaded && (
+                      <button
+                        type="button"
+                        disabled={deletingSem === sem.id || isCurrentlyUploading}
+                        onClick={() => handleRemoveMarksheet(sem.id, sem.title)}
+                        className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-red-500/10 hover:bg-red-500/20 text-red-400 hover:text-red-300 border border-red-500/30 transition flex items-center space-x-1 shrink-0"
+                        title="Remove uploaded marksheet"
+                      >
+                        {deletingSem === sem.id ? (
+                          <span className="inline-block animate-spin rounded-full h-3 w-3 border-2 border-red-400 border-t-transparent" />
+                        ) : (
+                          <Trash2 className="w-3.5 h-3.5" />
+                        )}
+                        <span>Remove</span>
+                      </button>
+                    )}
                   </div>
                 </div>
 

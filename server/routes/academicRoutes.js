@@ -472,12 +472,26 @@ router.put('/update-marksheet/:semester', authMiddleware, (req, res) => {
   }
 });
 
-// DELETE /api/academics/marksheet/:semester
-router.delete('/marksheet/:semester', authMiddleware, (req, res) => {
+// DELETE /api/academics/marksheet/:semester & /api/academic/marksheet/:semester
+const deleteMarksheetHandler = (req, res) => {
   try {
     const semesterKey = normalizeSemesterKey(req.params.semester);
     const currentRecords = db.academics.getByUserId(req.user.id);
     
+    // Safely delete file from disk if present
+    const marksheetToRemove = currentRecords.marksheets.find(m => m.semester === semesterKey);
+    if (marksheetToRemove && (marksheetToRemove.filePath || marksheetToRemove.fileUrl)) {
+      try {
+        const filePath = marksheetToRemove.filePath || marksheetToRemove.fileUrl;
+        const fullDiskPath = path.join(process.cwd(), filePath.replace(/^\//, ''));
+        if (fs.existsSync(fullDiskPath)) {
+          fs.unlinkSync(fullDiskPath);
+        }
+      } catch (fileErr) {
+        console.warn('Could not unlink marksheet file from disk:', fileErr.message);
+      }
+    }
+
     currentRecords.marksheets = currentRecords.marksheets.filter(m => m.semester !== semesterKey);
     const audit = computeAcademicAudit(currentRecords.marksheets);
     
@@ -489,7 +503,7 @@ router.delete('/marksheet/:semester', authMiddleware, (req, res) => {
 
     const fullPayload = formatAcademicsPayload(req.user.id);
     res.json({
-      message: `Marksheet for ${semesterKey.toUpperCase()} removed.`,
+      message: `Marksheet for ${semesterKey.toUpperCase()} removed successfully.`,
       academics: fullPayload,
       ...fullPayload
     });
@@ -497,6 +511,9 @@ router.delete('/marksheet/:semester', authMiddleware, (req, res) => {
     console.error('Delete marksheet error:', err);
     res.status(500).json({ error: 'Failed to delete marksheet.' });
   }
-});
+};
+
+router.delete('/marksheet/:semester', authMiddleware, deleteMarksheetHandler);
+router.delete('/:semester', authMiddleware, deleteMarksheetHandler);
 
 export default router;
