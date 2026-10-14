@@ -150,13 +150,13 @@ export default function ProfileView({ onProfileUpdated, onNavigate }) {
 
     try {
       const res = await api.profile.update({ ...formData, hasCustomSaved: true });
-      setSuccessMsg(`Profile saved successfully! Proceeding to Academic Records in 2s...`);
+      setSuccessMsg(`Profile saved successfully! Advancing to Step 2: Academic Records...`);
       if (refreshUser) refreshUser();
       if (onProfileUpdated) onProfileUpdated();
       
       setTimeout(() => {
         if (onNavigate) onNavigate('academics');
-      }, 2000);
+      }, 500);
     } catch (err) {
       setErrorMsg(err.message || 'Failed to save profile');
     } finally {

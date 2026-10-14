@@ -4,7 +4,7 @@
   "description": "Portfolio Compiler - AI-powered student portfolio generation and career-readiness platform",
   "type": "module",
   "scripts": {
-    "server": "node --watch server/index.js",
+    "server": "node --watch --watch-exclude=\"server/data/**\" --watch-exclude=\"uploads/**\" server/index.js",
     "client": "vite --host 127.0.0.1 --port 5173",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "vite build",

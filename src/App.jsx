@@ -23,7 +23,24 @@ import PublicPortfolioStandaloneView from './views/PublicPortfolioStandaloneView
 
 function MainApp() {
   const { user, profile } = useAuth();
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTabState] = useState(() => {
+    try {
+      const saved = localStorage.getItem('portfolio_compiler_active_tab');
+      return saved || 'dashboard';
+    } catch (e) {
+      return 'dashboard';
+    }
+  });
+
+  const setActiveTab = (tab) => {
+    setActiveTabState(tab);
+    try {
+      localStorage.setItem('portfolio_compiler_active_tab', tab);
+    } catch (e) {
+      console.warn('Failed to persist active tab:', e);
+    }
+  };
+
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   // Modals
