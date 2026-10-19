@@ -58,6 +58,16 @@ app.use('/api/career-readiness', careerReadinessRoutes);
 app.use('/api/readiness', careerReadinessRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 
+// Health check endpoint
+app.get(['/api/health', '/health'], (req, res) => {
+  res.json({
+    status: 'ok',
+    uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
+    service: 'portfolio-compiler-api'
+  });
+});
+
 app.get('/api/dashboard/summary', optionalAuthMiddleware, (req, res) => {
   try {
     const userId = req.user?.id || 'usr_neshat_demo';

@@ -43,7 +43,14 @@ async function request(endpoint, options = {}) {
   }
 
   if (!response.ok) {
-    const errorMsg = (data && data.error) || (data && data.message) || response.statusText || 'Request failed';
+    let errorMsg = (data && typeof data === 'object' && (data.error || data.message));
+    if (!errorMsg) {
+      if (response.status === 502 || response.status === 504) {
+        errorMsg = 'Backend API server on port 5000 is not running. Please start it using "npm run dev" or "npm run server".';
+      } else {
+        errorMsg = response.statusText || 'Request failed';
+      }
+    }
     const err = new Error(errorMsg);
     err.status = response.status;
     err.data = data;

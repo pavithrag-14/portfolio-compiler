@@ -16,7 +16,18 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'http://127.0.0.1:5000',
-        changeOrigin: true
+        changeOrigin: true,
+        configure: (proxy, options) => {
+          proxy.on('error', (err, req, res) => {
+            console.warn('[Vite Proxy] Backend on port 5000 is not reachable. Run "npm run server" or "npm run dev".');
+            if (res && !res.headersSent && typeof res.writeHead === 'function') {
+              res.writeHead(502, { 'Content-Type': 'application/json' });
+              res.end(JSON.stringify({ 
+                error: 'Backend API server on port 5000 is not running. Please start it using "npm run server" or "npm run dev".' 
+              }));
+            }
+          });
+        }
       },
       '/uploads': {
         target: 'http://127.0.0.1:5000',
