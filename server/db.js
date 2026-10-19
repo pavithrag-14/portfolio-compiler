@@ -198,22 +198,48 @@ function seedDemoStudent() {
   saveDatabase();
 }
 
+const DB_BACKUP_FILE = path.join(__dirname, 'data', 'db.backup.json');
+
 function loadDatabase() {
   try {
     if (fs.existsSync(DB_FILE)) {
       const raw = fs.readFileSync(DB_FILE, 'utf-8');
-      const parsed = JSON.parse(raw);
-      dbData = {
-        ...INITIAL_DB_STRUCTURE,
-        ...parsed
-      };
+      if (raw && raw.trim().length > 0) {
+        const parsed = JSON.parse(raw);
+        dbData = {
+          ...INITIAL_DB_STRUCTURE,
+          ...parsed
+        };
+      }
+    } else if (fs.existsSync(DB_BACKUP_FILE)) {
+      console.warn('[Database] Primary db.json missing, restoring from db.backup.json...');
+      const rawBackup = fs.readFileSync(DB_BACKUP_FILE, 'utf-8');
+      if (rawBackup && rawBackup.trim().length > 0) {
+        dbData = {
+          ...INITIAL_DB_STRUCTURE,
+          ...JSON.parse(rawBackup)
+        };
+      }
     }
-    if (dbData.users.length === 0) {
+
+    if (!dbData.users || dbData.users.length === 0) {
       seedDemoStudent();
     }
   } catch (err) {
-    console.error('Failed to load DB file, initializing clean database:', err);
-    seedDemoStudent();
+    console.error('Failed to parse DB file, attempting backup restoration:', err.message);
+    try {
+      if (fs.existsSync(DB_BACKUP_FILE)) {
+        const rawBackup = fs.readFileSync(DB_BACKUP_FILE, 'utf-8');
+        dbData = {
+          ...INITIAL_DB_STRUCTURE,
+          ...JSON.parse(rawBackup)
+        };
+      } else {
+        seedDemoStudent();
+      }
+    } catch (_) {
+      seedDemoStudent();
+    }
   }
 }
 
@@ -223,11 +249,27 @@ function saveDatabase() {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
-    const tempFile = `${DB_FILE}.tmp`;
-    fs.writeFileSync(tempFile, JSON.stringify(dbData, null, 2), 'utf-8');
-    fs.renameSync(tempFile, DB_FILE);
+
+    const payload = JSON.stringify(dbData, null, 2);
+    const tempFile = `${DB_FILE}.${Date.now()}.${Math.random().toString(36).substring(2, 7)}.tmp`;
+
+    // 1. Write to unique atomic temp file
+    fs.writeFileSync(tempFile, payload, 'utf-8');
+
+    // 2. Perform atomic swap to DB_FILE with fallback for Windows locking
+    try {
+      fs.renameSync(tempFile, DB_FILE);
+    } catch (renameErr) {
+      fs.copyFileSync(tempFile, DB_FILE);
+      try { fs.unlinkSync(tempFile); } catch (_) {}
+    }
+
+    // 3. Maintain healthy backup copy for zero-loss crash resilience
+    try {
+      fs.writeFileSync(DB_BACKUP_FILE, payload, 'utf-8');
+    } catch (_) {}
   } catch (err) {
-    console.error('Database write error:', err);
+    console.error('Database atomic write error:', err);
   }
 }
 

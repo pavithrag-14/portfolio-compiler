@@ -11,10 +11,11 @@ const REPO = 'portfolio-compiler';
 const BRANCH = 'main';
 
 const token = process.argv[2] || process.env.GITHUB_TOKEN;
+const commitMsg = process.argv[3] || 'Portfolio Compiler: complete all technical tasks (OCR, live APIs, atomic DB, deployment)';
 
 if (!token) {
   console.error('\n[Error] GitHub Personal Access Token is required.');
-  console.error('Usage: node server/pushToGithub.js <YOUR_GITHUB_TOKEN>\n');
+  console.error('Usage: node server/pushToGithub.js <YOUR_GITHUB_TOKEN> [COMMIT_MESSAGE]\n');
   process.exit(1);
 }
 
@@ -132,7 +133,7 @@ async function push() {
 
   console.log('5. Creating Git commit...');
   const commitPayload = {
-    message: 'Portfolio Compiler: full-stack AI career platform',
+    message: commitMsg,
     tree: treeResponse.sha,
     parents: parentCommitSha ? [parentCommitSha] : []
   };

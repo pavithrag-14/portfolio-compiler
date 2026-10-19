@@ -4,6 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import { db } from '../db.js';
 import { authMiddleware } from '../auth.js';
+import { performOcr } from '../ocr.js';
 
 const router = express.Router();
 
@@ -134,7 +135,7 @@ const certUploadFields = upload.fields([
 ]);
 
 // Upload and add certification (Section 5: unlimited uploads, "+ Add Certification")
-const handleCreateCert = (req, res) => {
+const handleCreateCert = async (req, res) => {
   try {
     const {
       name,
@@ -163,6 +164,16 @@ const handleCreateCert = (req, res) => {
     const uploadedDoc = req.files?.certificate?.[0] || req.files?.certFile?.[0];
     const uploadedQr = req.files?.qrCode?.[0];
 
+    // Real OCR processing if document is an image
+    let realOcr = { rawText: '', confidence: 0, extracted: {} };
+    if (uploadedDoc && uploadedDoc.path) {
+      try {
+        realOcr = await performOcr(uploadedDoc.path);
+      } catch (ocrErr) {
+        console.warn('Real OCR execution error on certificate:', ocrErr.message);
+      }
+    }
+
     const finalTitle = certTitle || (uploadedDoc ? uploadedDoc.originalname.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' ') : 'Verified Technical Certificate');
 
     let parsedSkills = [];
@@ -173,12 +184,27 @@ const handleCreateCert = (req, res) => {
       parsedSkills = rawSkills;
     }
 
+    // Merge skills detected by real OCR
+    if (Array.isArray(realOcr.extracted.skills) && realOcr.extracted.skills.length > 0) {
+      realOcr.extracted.skills.forEach(s => {
+        if (!parsedSkills.includes(s)) parsedSkills.push(s);
+      });
+    }
+
+    const detectedIssuer = realOcr.extracted.issuer;
+    const finalIssuer = issuer 
+      ? issuer.trim() 
+      : (detectedIssuer || (finalTitle.includes('Meta') ? 'Meta / Coursera' : finalTitle.includes('Google') ? 'Google Cloud' : 'Accredited Issuer'));
+
+    const detectedId = realOcr.extracted.credentialId;
+    const finalId = certificateId ? certificateId.trim() : (detectedId || (uploadedDoc ? `CERT-${Date.now().toString().slice(-6)}` : ''));
+
     const certPayload = {
       title: finalTitle,
       name: finalTitle,
-      studentName: studentName ? studentName.trim() : '',
-      issuer: issuer ? issuer.trim() : (finalTitle.includes('Meta') ? 'Meta / Coursera' : finalTitle.includes('Google') ? 'Google Cloud' : 'Accredited Issuer'),
-      certificateId: certificateId ? certificateId.trim() : (uploadedDoc ? `CERT-${Date.now().toString().slice(-6)}` : ''),
+      studentName: studentName ? studentName.trim() : (realOcr.extracted.studentName || ''),
+      issuer: finalIssuer,
+      certificateId: finalId,
       issueDate: issueDate ? issueDate.trim() : new Date().toISOString().split('T')[0],
       expiryDate: expiryDate ? expiryDate.trim() : '',
       courseName: courseName ? courseName.trim() : finalTitle,
@@ -191,7 +217,9 @@ const handleCreateCert = (req, res) => {
       skillsVerified: parsedSkills,
       filePath: uploadedDoc ? `/uploads/certifications/${uploadedDoc.filename}` : null,
       fileName: uploadedDoc ? uploadedDoc.originalname : null,
-      qrPath: uploadedQr ? `/uploads/certifications/${uploadedQr.filename}` : null
+      qrPath: uploadedQr ? `/uploads/certifications/${uploadedQr.filename}` : null,
+      ocrConfidence: realOcr.confidence || 0,
+      ocrProcessed: Boolean(realOcr.rawText)
     };
 
     // Run verification flow (Section 6)

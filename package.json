@@ -4,11 +4,13 @@
   "description": "Portfolio Compiler - AI-powered student portfolio generation and career-readiness platform",
   "type": "module",
   "scripts": {
+    "start": "node server/index.js",
     "server": "node --watch --watch-exclude=\"server/data/**\" --watch-exclude=\"uploads/**\" server/index.js",
     "client": "vite --host 127.0.0.1 --port 5173",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "serve": "npm run build && npm run start"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
@@ -19,7 +21,8 @@
     "lucide-react": "^1.52.0",
     "multer": "^2.4.0",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "tesseract.js": "^7.0.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",

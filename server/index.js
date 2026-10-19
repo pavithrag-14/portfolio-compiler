@@ -186,6 +186,27 @@ app.get('/api/dashboard/summary', optionalAuthMiddleware, (req, res) => {
   }
 });
 
+// Production static asset serving & SPA client-side routing fallback
+const distDir = path.resolve(__dirname, '..', 'dist');
+if (fs.existsSync(distDir)) {
+  app.use(express.static(distDir));
+
+  app.use((req, res, next) => {
+    if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/uploads')) {
+      const indexPath = path.join(distDir, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        return res.sendFile(indexPath);
+      }
+    }
+    next();
+  });
+}
+
+// 404 handler for unknown API routes
+app.use('/api', (req, res) => {
+  res.status(404).json({ error: `API endpoint '${req.method} ${req.originalUrl}' not found.` });
+});
+
 // Central Error Handler (Section 27)
 app.use((err, req, res, next) => {
   console.error('Unhandled Server Error:', err);
