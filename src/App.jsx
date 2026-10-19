@@ -60,11 +60,11 @@ function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070b14] text-slate-100 flex flex-col cyber-grid relative selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 flex flex-col relative selection:bg-blue-500/20 selection:text-blue-900">
       
-      {/* Background ambient lighting */}
-      <div className="fixed top-0 left-1/4 w-[600px] h-[350px] bg-cyan-600/10 rounded-full blur-[140px] pointer-events-none -z-10" />
-      <div className="fixed bottom-0 right-1/4 w-[500px] h-[300px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none -z-10" />
+      {/* Background subtle ambient warmth */}
+      <div className="fixed top-0 left-1/4 w-[600px] h-[350px] bg-blue-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="fixed bottom-0 right-1/4 w-[500px] h-[300px] bg-indigo-100/40 rounded-full blur-[130px] pointer-events-none -z-10" />
 
       {/* Header */}
       <Header
@@ -185,12 +185,12 @@ function MainApp() {
       </main>
 
       {/* System Footer */}
-      <footer className="mt-auto border-t border-slate-800/80 bg-slate-950/80 py-4 px-6 text-center text-xs text-slate-500 font-mono flex flex-col md:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
+      <footer className="mt-auto border-t border-slate-200/90 bg-white/80 py-4 px-6 text-center text-xs text-slate-500 font-mono flex flex-col md:flex-row items-center justify-between gap-2 max-w-7xl mx-auto w-full">
         <div className="flex items-center space-x-2">
-          <span className="w-2 h-2 rounded-full bg-cyan-400" />
-          <span>Portfolio Compiler — AI-Powered Employability Assessment System</span>
+          <span className="w-2 h-2 rounded-full bg-blue-600" />
+          <span className="font-semibold text-slate-700">Portfolio Compiler — AI Employability Platform</span>
         </div>
-        <div>
+        <div className="text-slate-400">
           50-MCQ Adaptive Engine • Acoustic AI Mock Interview • Multi-Modal Verification
         </div>
       </footer>

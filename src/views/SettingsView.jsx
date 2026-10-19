@@ -201,15 +201,15 @@ export default function SettingsView() {
           <div className="flex items-center space-x-2">
             <button
               onClick={handleOpenResumeModal}
-              className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 text-xs font-semibold flex items-center space-x-1.5 transition"
+              className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition"
             >
-              <FileText className="w-4 h-4 text-cyan-400" />
+              <FileText className="w-4 h-4 text-blue-600" />
               <span>Generate Resume</span>
             </button>
             <button
               onClick={handleSaveSettings}
               disabled={saving}
-              className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-md glow-cyan"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center space-x-1.5 transition shadow-xs"
             >
               <Save className="w-4 h-4" />
               <span>{saving ? 'Saving...' : 'Save Settings'}</span>
@@ -413,7 +413,7 @@ export default function SettingsView() {
             <div className="space-y-2 pt-2">
               <button
                 onClick={handleOpenResumeModal}
-                className="w-full py-2.5 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center justify-center space-x-2 transition shadow-md glow-cyan"
+                className="w-full py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center space-x-2 transition shadow-xs"
               >
                 <Eye className="w-4 h-4" />
                 <span>Preview & Print Resume</span>
@@ -421,9 +421,9 @@ export default function SettingsView() {
 
               <button
                 onClick={handleExportJson}
-                className="w-full py-2 px-3 rounded-xl bg-slate-950 hover:bg-slate-800 text-slate-300 border border-slate-800 text-xs font-semibold flex items-center justify-center space-x-1.5 transition"
+                className="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center justify-center space-x-1.5 transition"
               >
-                <Download className="w-3.5 h-3.5 text-slate-400" />
+                <Download className="w-3.5 h-3.5 text-slate-500" />
                 <span>Export Verified JSON Payload</span>
               </button>
             </div>

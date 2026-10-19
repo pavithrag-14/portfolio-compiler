@@ -172,7 +172,7 @@ export default function SkillsView({ onDataChanged }) {
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-md glow-cyan"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center space-x-1.5 transition shadow-xs"
             >
               <Plus className="w-4 h-4" />
               <span>Add Skill Manually</span>
@@ -180,9 +180,9 @@ export default function SkillsView({ onDataChanged }) {
             <button
               onClick={handleInferSkills}
               disabled={inferring}
-              className="px-4 py-2 rounded-xl bg-slate-950 hover:bg-slate-800 text-cyan-300 border border-cyan-500/30 text-xs font-semibold flex items-center space-x-1.5 transition disabled:opacity-50"
+              className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition disabled:opacity-50"
             >
-              <Sparkles className={`w-4 h-4 text-cyan-400 ${inferring ? 'animate-spin' : ''}`} />
+              <Sparkles className={`w-4 h-4 text-blue-600 ${inferring ? 'animate-spin' : ''}`} />
               <span>{inferring ? 'Inferring Skills...' : 'Infer Skills with AI'}</span>
             </button>
           </div>
@@ -335,37 +335,37 @@ export default function SkillsView({ onDataChanged }) {
 
       {/* Add Skill Modal */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="w-full max-w-md bg-[#0b1220] border border-cyan-500/30 rounded-2xl shadow-2xl p-6 relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="w-full max-w-md bg-white border border-slate-200/90 rounded-2xl shadow-xl p-6 relative">
             <button
               onClick={() => setIsAddModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-100 p-1 rounded-lg hover:bg-slate-800"
+              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1 rounded-lg hover:bg-slate-100"
             >
               <X className="w-5 h-5" />
             </button>
 
-            <h3 className="text-base font-bold text-slate-100 mb-1">Add Technical Skill</h3>
-            <p className="text-xs text-slate-400 mb-4">Register a manual skill or framework competency.</p>
+            <h3 className="text-base font-bold text-slate-900 mb-1">Add Technical Skill</h3>
+            <p className="text-xs text-slate-500 mb-4">Register a manual skill or framework competency.</p>
 
             <form onSubmit={handleAddSkill} className="space-y-4">
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Skill Name *</label>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">Skill Name *</label>
                 <input
                   type="text"
                   required
                   value={skillForm.name}
                   onChange={(e) => setSkillForm({ ...skillForm, name: e.target.value })}
                   placeholder="e.g. React, PostgreSQL, Docker, Figma"
-                  className="w-full bg-slate-900 border border-slate-700 focus:border-cyan-400 rounded-xl px-3 py-2 text-sm text-slate-100 outline-none"
+                  className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl px-3 py-2 text-sm text-slate-900 outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">Category</label>
+                <label className="block text-xs font-semibold text-slate-700 mb-1">Category</label>
                 <select
                   value={skillForm.category}
                   onChange={(e) => setSkillForm({ ...skillForm, category: e.target.value })}
-                  className="w-full bg-slate-900 border border-slate-700 focus:border-cyan-400 rounded-xl px-3 py-2 text-sm text-slate-100 outline-none"
+                  className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl px-3 py-2 text-sm text-slate-900 outline-none"
                 >
                   {SKILL_CATEGORIES.filter(c => c !== 'All').map(cat => (
                     <option key={cat} value={cat}>{cat}</option>
@@ -374,7 +374,7 @@ export default function SkillsView({ onDataChanged }) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-slate-300 mb-1">
+                <label className="block text-xs font-semibold text-slate-700 mb-1">
                   Proficiency ({skillForm.proficiency}%)
                 </label>
                 <input
@@ -383,7 +383,7 @@ export default function SkillsView({ onDataChanged }) {
                   max="100"
                   value={skillForm.proficiency}
                   onChange={(e) => setSkillForm({ ...skillForm, proficiency: e.target.value })}
-                  className="w-full accent-cyan-400"
+                  className="w-full accent-blue-600"
                 />
               </div>
 
@@ -391,13 +391,13 @@ export default function SkillsView({ onDataChanged }) {
                 <button
                   type="button"
                   onClick={() => setIsAddModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 text-xs font-medium hover:bg-slate-700"
+                  className="px-4 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-medium hover:bg-slate-200 border border-slate-200"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs"
+                  className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs"
                 >
                   Add Skill
                 </button>

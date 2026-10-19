@@ -212,9 +212,9 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
 
   if (loading) {
     return (
-      <div className="p-12 text-center text-slate-400 flex flex-col items-center justify-center space-y-3">
-        <div className="w-8 h-8 border-2 border-sky-400 border-t-transparent rounded-full animate-spin" />
-        <span className="text-sm">Cataloging verified student projects and technical competencies...</span>
+      <div className="p-12 text-center text-slate-500 flex flex-col items-center justify-center space-y-3 bg-white border border-slate-200 rounded-2xl shadow-xs">
+        <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
+        <span className="text-sm font-medium">Cataloging verified student projects and technical competencies...</span>
       </div>
     );
   }
@@ -223,22 +223,22 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
     <div className="space-y-6">
       
       {/* Top Banner */}
-      <div className="p-6 bg-slate-900/80 border border-cyan-500/20 rounded-2xl">
+      <div className="p-6 bg-white border border-slate-200/90 rounded-2xl shadow-xs">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <div className="flex items-center space-x-2.5 mb-2">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-700 border border-blue-200/80">
                 Verified Project Vault & Skill Evidence
               </span>
-              <span className="text-slate-500">•</span>
-              <span className="text-xs text-slate-400">
+              <span className="text-slate-300">•</span>
+              <span className="text-xs text-slate-500">
                 Supports Manual Creation or 1-Click GitHub Import
               </span>
             </div>
-            <h1 className="text-xl md:text-2xl font-black text-slate-100 tracking-tight">
+            <h1 className="text-xl md:text-2xl font-extrabold text-slate-900 tracking-tight">
               Projects & Categorized Skills
             </h1>
-            <p className="text-xs md:text-sm text-slate-400 mt-1 max-w-2xl">
+            <p className="text-xs md:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed">
               Add unlimited software projects detailing problem statements, architectures, and outcomes. Skills are automatically verified and mapped directly to your live portfolio.
             </p>
           </div>
@@ -249,15 +249,15 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
                 <button
                   type="button"
                   onClick={() => onNavigate('dashboard')}
-                  className="px-3 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-700"
+                  className="px-3 py-2 rounded-xl bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold flex items-center space-x-1.5 transition border border-slate-200 shadow-2xs cursor-pointer"
                 >
-                  <ArrowLeft className="w-3.5 h-3.5 text-cyan-400" />
+                  <ArrowLeft className="w-3.5 h-3.5 text-blue-600" />
                   <span>Dashboard</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => onNavigate('coding')}
-                  className="px-3.5 py-2 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 text-xs font-semibold flex items-center space-x-1.5 transition cursor-pointer"
+                  className="px-3.5 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 border border-blue-200 text-xs font-semibold flex items-center space-x-1.5 transition cursor-pointer shadow-2xs"
                 >
                   <span>Next: Coding Profiles</span>
                   <ChevronRight className="w-3.5 h-3.5" />
@@ -268,15 +268,15 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
             <button
               onClick={handleInferSkills}
               disabled={inferringSkills}
-              className="px-3.5 py-2 rounded-xl bg-purple-950/60 hover:bg-purple-900/60 text-purple-300 border border-purple-500/40 text-xs font-semibold flex items-center space-x-1.5 transition"
+              className="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center space-x-1.5 transition shadow-2xs cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+              <Sparkles className="w-3.5 h-3.5 text-purple-600" />
               <span>{inferringSkills ? 'Inferring...' : 'AI Infer Skills'}</span>
             </button>
 
             <button
               onClick={() => setIsProjectModalOpen(true)}
-              className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-md glow-cyan"
+              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center space-x-1.5 transition shadow-xs cursor-pointer"
             >
               <Plus className="w-4 h-4" />
               <span>+ Add Project</span>
@@ -285,20 +285,20 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
         </div>
 
         {feedback.msg && (
-          <div className={`mt-4 p-3 rounded-xl text-xs flex flex-wrap items-center justify-between gap-2 ${
+          <div className={`mt-4 p-3 rounded-xl text-xs flex flex-wrap items-center justify-between gap-2 shadow-2xs ${
             feedback.type === 'success' 
-              ? 'bg-emerald-950/40 border border-emerald-500/40 text-emerald-200' 
-              : 'bg-red-950/40 border border-red-500/40 text-red-200'
+              ? 'bg-emerald-50 border border-emerald-200 text-emerald-800' 
+              : 'bg-rose-50 border border-rose-200 text-rose-800'
           }`}>
             <div className="flex items-center space-x-2">
-              {feedback.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-400" /> : <AlertCircle className="w-4 h-4 text-red-400" />}
-              <span>{feedback.msg}</span>
+              {feedback.type === 'success' ? <CheckCircle2 className="w-4 h-4 text-emerald-600" /> : <AlertCircle className="w-4 h-4 text-rose-600" />}
+              <span className="font-semibold">{feedback.msg}</span>
             </div>
             {onNavigate && feedback.type === 'success' && (
               <button
                 type="button"
                 onClick={() => onNavigate('coding')}
-                className="px-3 py-1.5 rounded-lg bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs flex items-center space-x-1.5 transition shadow-sm cursor-pointer"
+                className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs flex items-center space-x-1.5 transition shadow-xs cursor-pointer"
               >
                 <span>Next: Coding Profiles</span>
                 <ChevronRight className="w-3.5 h-3.5" />
@@ -309,10 +309,10 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
       </div>
 
       {/* 1-Click Import from GitHub Card */}
-      <div className="p-4 bg-slate-900/50 border border-slate-800 rounded-xl flex flex-col md:flex-row items-center justify-between gap-3">
-        <div className="flex items-center space-x-2 text-xs text-slate-300">
-          <GithubIcon className="w-4 h-4 text-cyan-400 shrink-0" />
-          <span>Quick Import: Paste any public GitHub repository URL to auto-extract details:</span>
+      <div className="p-4 bg-white border border-slate-200 rounded-xl flex flex-col md:flex-row items-center justify-between gap-3 shadow-2xs">
+        <div className="flex items-center space-x-2 text-xs text-slate-700">
+          <GithubIcon className="w-4 h-4 text-slate-900 shrink-0" />
+          <span className="font-medium">Quick Import: Paste any public GitHub repository URL to auto-extract details:</span>
         </div>
         <form onSubmit={handleImportGithub} className="flex space-x-2 w-full md:w-auto">
           <input
@@ -320,14 +320,14 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
             value={githubRepoUrl}
             onChange={(e) => setGithubRepoUrl(e.target.value)}
             placeholder="https://github.com/username/repo"
-            className="w-full md:w-72 bg-slate-950 border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs text-slate-100 placeholder:text-slate-600 outline-none"
+            className="w-full md:w-72 bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-lg px-2.5 py-1.5 text-xs text-slate-900 placeholder:text-slate-400 outline-none"
           />
           <button
             type="submit"
             disabled={importingRepo}
-            className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-slate-700 text-xs font-semibold flex items-center space-x-1 shrink-0"
+            className="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center space-x-1 shrink-0 cursor-pointer shadow-2xs"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Download className="w-3.5 h-3.5 text-blue-600" />
             <span>{importingRepo ? 'Importing...' : 'Import'}</span>
           </button>
         </form>
@@ -336,13 +336,13 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
       {/* Projects List */}
       <div className="space-y-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-bold text-slate-300 uppercase tracking-wider flex items-center space-x-2">
+          <h2 className="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
             <span>Student Projects ({projects.length})</span>
           </h2>
         </div>
 
         {projects.length === 0 ? (
-          <div className="p-8 bg-slate-900/40 border border-dashed border-slate-800 rounded-xl text-center text-xs text-slate-500">
+          <div className="p-8 bg-white border border-dashed border-slate-300 rounded-xl text-center text-xs text-slate-500 shadow-2xs">
             No projects added yet. Click "+ Add Project" or import a repository from GitHub.
           </div>
         ) : (
@@ -350,14 +350,14 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
             {projects.map((proj) => (
               <div 
                 key={proj.id}
-                className="p-5 bg-slate-900/70 border border-slate-800 hover:border-cyan-500/30 rounded-2xl flex flex-col justify-between space-y-4 transition-all"
+                className="p-5 bg-white border border-slate-200/90 hover:border-blue-300 hover:shadow-xs rounded-2xl flex flex-col justify-between space-y-4 transition-all shadow-2xs"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <h3 className="text-base font-bold text-slate-100">{proj.title}</h3>
+                    <h3 className="text-base font-bold text-slate-900">{proj.title}</h3>
                     <button
                       onClick={() => handleDeleteProject(proj.id)}
-                      className="text-slate-500 hover:text-red-400 p-1"
+                      className="text-slate-400 hover:text-rose-600 p-1 cursor-pointer"
                       title="Delete project"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -365,40 +365,40 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
                   </div>
 
                   {proj.problemStatement && (
-                    <div className="text-xs text-slate-400 mb-2">
-                      <strong className="text-slate-300">Problem: </strong>
+                    <div className="text-xs text-slate-600 mb-2 leading-relaxed">
+                      <strong className="text-slate-800">Problem: </strong>
                       {proj.problemStatement}
                     </div>
                   )}
 
                   {proj.solution && (
-                    <div className="text-xs text-slate-300 mb-2">
-                      <strong className="text-cyan-400">Solution: </strong>
+                    <div className="text-xs text-slate-600 mb-2 leading-relaxed">
+                      <strong className="text-blue-700">Solution: </strong>
                       {proj.solution}
                     </div>
                   )}
 
                   {proj.description && !proj.solution && (
-                    <p className="text-xs text-slate-400 mb-2 line-clamp-3">
+                    <p className="text-xs text-slate-600 mb-2 line-clamp-3 leading-relaxed">
                       {proj.description}
                     </p>
                   )}
 
                   {/* Metadata pills */}
-                  <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-400 my-3">
+                  <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500 my-3">
                     {proj.role && (
-                      <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300">
+                      <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200 font-medium">
                         Role: {proj.role}
                       </span>
                     )}
                     {proj.duration && (
-                      <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 flex items-center">
-                        <Clock className="w-3 h-3 mr-1" /> {proj.duration}
+                      <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200 flex items-center font-medium">
+                        <Clock className="w-3 h-3 mr-1 text-slate-400" /> {proj.duration}
                       </span>
                     )}
                     {proj.teamSize && (
-                      <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 flex items-center">
-                        <Users className="w-3 h-3 mr-1" /> Team: {proj.teamSize}
+                      <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200 flex items-center font-medium">
+                        <Users className="w-3 h-3 mr-1 text-slate-400" /> Team: {proj.teamSize}
                       </span>
                     )}
                   </div>
@@ -407,7 +407,7 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
                   {proj.technologies && proj.technologies.length > 0 && (
                     <div className="flex flex-wrap gap-1 mt-2">
                       {proj.technologies.map((t, idx) => (
-                        <span key={idx} className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950/60 border border-cyan-500/20 text-cyan-300">
+                        <span key={idx} className="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-50 border border-blue-200 text-blue-700 font-semibold">
                           {t}
                         </span>
                       ))}
@@ -416,14 +416,14 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
                 </div>
 
                 {/* Links */}
-                <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-3">
                     {proj.githubUrl && (
                       <a 
                         href={proj.githubUrl} 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="text-cyan-400 hover:text-cyan-300 flex items-center space-x-1"
+                        className="text-slate-700 hover:text-slate-900 font-semibold flex items-center space-x-1"
                       >
                         <GithubIcon className="w-3.5 h-3.5" />
                         <span>Source Code</span>
@@ -434,7 +434,7 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
                         href={proj.demoUrl} 
                         target="_blank" 
                         rel="noreferrer" 
-                        className="text-emerald-400 hover:text-emerald-300 flex items-center space-x-1"
+                        className="text-emerald-700 hover:text-emerald-800 font-semibold flex items-center space-x-1"
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
                         <span>Live Demo</span>
@@ -442,7 +442,7 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
                     )}
                   </div>
                   {proj.outcome && (
-                    <span className="text-[10px] text-emerald-400 font-semibold truncate max-w-[150px]">
+                    <span className="text-[10px] text-emerald-700 font-semibold truncate max-w-[150px]">
                       {proj.outcome}
                     </span>
                   )}
@@ -454,23 +454,23 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
       </div>
 
       {/* Categorized Skills Section */}
-      <div className="p-6 bg-slate-900/80 border border-slate-800 rounded-2xl space-y-4">
+      <div className="p-6 bg-white border border-slate-200/90 rounded-2xl space-y-4 shadow-xs">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
-            <h2 className="text-base font-bold text-slate-100 flex items-center space-x-2">
-              <Cpu className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-base font-bold text-slate-900 flex items-center space-x-2">
+              <Cpu className="w-5 h-5 text-blue-600" />
               <span>Evidence-Backed Skill Competencies ({skills.length})</span>
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500 mt-0.5">
               Categorized into 11 domains with weighted confidence derived from actual code and credentials.
             </p>
           </div>
 
           <button
             onClick={() => setIsSkillModalOpen(true)}
-            className="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 border border-cyan-500/30 text-xs font-semibold flex items-center space-x-1"
+            className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 text-xs font-semibold flex items-center space-x-1 cursor-pointer shadow-2xs"
           >
-            <Plus className="w-3.5 h-3.5" />
+            <Plus className="w-3.5 h-3.5 text-blue-600" />
             <span>+ Add Skill Manually</span>
           </button>
         </div>
@@ -482,21 +482,21 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
             if (catSkills.length === 0) return null;
 
             return (
-              <div key={cat} className="p-4 bg-slate-950/70 border border-slate-800/80 rounded-xl space-y-2">
-                <span className="text-[11px] font-bold text-cyan-400 uppercase font-mono block">
+              <div key={cat} className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                <span className="text-[11px] font-bold text-slate-700 uppercase font-mono block">
                   {cat} ({catSkills.length})
                 </span>
                 <div className="flex flex-wrap gap-1.5">
                   {catSkills.map((sk) => (
                     <div 
                       key={sk.id || sk.name}
-                      className="px-2 py-1 rounded-lg bg-slate-900 border border-slate-700/80 text-xs text-slate-200 flex items-center space-x-1.5 group"
+                      className="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs text-slate-800 flex items-center space-x-1.5 group shadow-2xs"
                     >
                       <span>{sk.name}</span>
-                      <span className="text-[10px] text-cyan-400 font-mono font-bold">{sk.proficiency || 80}%</span>
+                      <span className="text-[10px] text-blue-600 font-mono font-bold">{sk.proficiency || 80}%</span>
                       <button
                         onClick={() => handleDeleteSkill(sk.id)}
-                        className="text-slate-500 hover:text-red-400 ml-1 opacity-0 group-hover:opacity-100 transition"
+                        className="text-slate-400 hover:text-rose-600 ml-1 opacity-0 group-hover:opacity-100 transition cursor-pointer"
                       >
                         <X className="w-3 h-3" />
                       </button>
@@ -511,21 +511,21 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
 
       {/* Add Project Modal */}
       {isProjectModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="w-full max-w-xl bg-slate-900 border border-cyan-500/40 rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-base font-bold text-slate-100 flex items-center space-x-2">
-                <Layers className="w-5 h-5 text-cyan-400" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="w-full max-w-xl bg-white border border-slate-200 rounded-2xl p-6 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+              <h3 className="text-base font-bold text-slate-900 flex items-center space-x-2">
+                <Layers className="w-5 h-5 text-blue-600" />
                 <span>Add Student Project</span>
               </h3>
-              <button onClick={() => setIsProjectModalOpen(false)} className="text-slate-400 hover:text-slate-200">
+              <button onClick={() => setIsProjectModalOpen(false)} className="text-slate-400 hover:text-slate-600 cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <form onSubmit={handleCreateProject} className="space-y-3.5 text-xs">
               <div>
-                <label className="block text-slate-300 mb-1">Project Title <span className="text-cyan-400">*</span></label>
+                <label className="block text-slate-700 font-semibold mb-1">Project Title <span className="text-blue-600">*</span></label>
                 <input
                   type="text"
                   required
@@ -533,119 +533,119 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
                   value={projectForm.title}
                   onChange={handleProjectInputChange}
                   placeholder="e.g. Real-Time Autonomous Drone Flight Controller"
-                  className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                  className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 mb-1">Problem Statement</label>
+                <label className="block text-slate-700 font-semibold mb-1">Problem Statement</label>
                 <textarea
                   name="problemStatement"
                   rows={2}
                   value={projectForm.problemStatement}
                   onChange={handleProjectInputChange}
                   placeholder="What specific engineering challenge or user pain point does this solve?"
-                  className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                  className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 mb-1">Solution & Technical Approach</label>
+                <label className="block text-slate-700 font-semibold mb-1">Solution & Technical Approach</label>
                 <textarea
                   name="solution"
                   rows={2}
                   value={projectForm.solution}
                   onChange={handleProjectInputChange}
                   placeholder="How did you architect and execute the solution?"
-                  className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                  className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 mb-1">Technologies Used (Comma separated)</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Technologies Used (Comma separated)</label>
                   <input
                     type="text"
                     name="technologies"
                     value={projectForm.technologies}
                     onChange={handleProjectInputChange}
                     placeholder="e.g. React, WebSockets, Python, FastAPI"
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                    className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 mb-1">Your Role / Contribution</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Your Role / Contribution</label>
                   <input
                     type="text"
                     name="role"
                     value={projectForm.role}
                     onChange={handleProjectInputChange}
                     placeholder="e.g. Lead Frontend Architect"
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                    className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 mb-1">GitHub Repository URL</label>
+                  <label className="block text-slate-700 font-semibold mb-1">GitHub Repository URL</label>
                   <input
                     type="url"
                     name="githubUrl"
                     value={projectForm.githubUrl}
                     onChange={handleProjectInputChange}
                     placeholder="https://github.com/..."
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                    className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 mb-1">Live Demo / Deployment URL</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Live Demo / Deployment URL</label>
                   <input
                     type="url"
                     name="demoUrl"
                     value={projectForm.demoUrl}
                     onChange={handleProjectInputChange}
                     placeholder="https://myapp.vercel.app"
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                    className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 mb-1">Team Size</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Team Size</label>
                   <input
                     type="text"
                     name="teamSize"
                     value={projectForm.teamSize}
                     onChange={handleProjectInputChange}
                     placeholder="e.g. 1 (Solo) or 4"
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                    className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-slate-300 mb-1">Key Measurable Outcome</label>
+                  <label className="block text-slate-700 font-semibold mb-1">Key Measurable Outcome</label>
                   <input
                     type="text"
                     name="outcome"
                     value={projectForm.outcome}
                     onChange={handleProjectInputChange}
                     placeholder="e.g. Reduced telemetry latency by 45%"
-                    className="w-full bg-slate-950 border border-slate-700 focus:border-cyan-400 rounded-xl p-2.5 text-slate-100 outline-none"
+                    className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 placeholder:text-slate-400 outline-none"
                   />
                 </div>
               </div>
 
-              <div className="pt-3 flex justify-end space-x-2">
+              <div className="pt-3 border-t border-slate-100 flex justify-end space-x-2">
                 <button
                   type="button"
                   onClick={() => setIsProjectModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-medium"
+                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium border border-slate-200 cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold"
+                  className="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xs cursor-pointer"
                 >
                   Save Project
                 </button>
@@ -657,34 +657,34 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
 
       {/* Add Skill Modal */}
       {isSkillModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
-          <div className="w-full max-w-sm bg-slate-900 border border-cyan-500/40 rounded-2xl p-6 shadow-2xl relative space-y-4">
-            <div className="flex items-center justify-between">
-              <h3 className="text-base font-bold text-slate-100">Add Technical Skill</h3>
-              <button onClick={() => setIsSkillModalOpen(false)} className="text-slate-400 hover:text-slate-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="w-full max-w-sm bg-white border border-slate-200 rounded-2xl p-6 shadow-2xl relative space-y-4">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <h3 className="text-base font-bold text-slate-900">Add Technical Skill</h3>
+              <button onClick={() => setIsSkillModalOpen(false)} className="text-slate-400 hover:text-slate-600 cursor-pointer">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
             <form onSubmit={handleAddSkill} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-300 mb-1">Skill Name</label>
+                <label className="block text-slate-700 font-semibold mb-1">Skill Name</label>
                 <input
                   type="text"
                   required
                   value={skillForm.name}
                   onChange={(e) => setSkillForm({ ...skillForm, name: e.target.value })}
                   placeholder="e.g. TypeScript / Docker / Figma"
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 outline-none"
+                  className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 outline-none"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 mb-1">Category</label>
+                <label className="block text-slate-700 font-semibold mb-1">Category</label>
                 <select
                   value={skillForm.category}
                   onChange={(e) => setSkillForm({ ...skillForm, category: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-700 rounded-xl p-2.5 text-slate-100 outline-none"
+                  className="w-full bg-white border border-slate-300 focus:border-blue-600 focus:ring-2 focus:ring-blue-100 rounded-xl p-2.5 text-slate-900 outline-none"
                 >
                   {SKILL_CATEGORIES.map(c => (
                     <option key={c} value={c}>{c}</option>
@@ -693,7 +693,7 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
               </div>
 
               <div>
-                <label className="block text-slate-300 mb-1">Proficiency Level ({skillForm.proficiency}%)</label>
+                <label className="block text-slate-700 font-semibold mb-1">Proficiency Level ({skillForm.proficiency}%)</label>
                 <input
                   type="range"
                   min="20"
@@ -705,17 +705,17 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
                 />
               </div>
 
-              <div className="pt-2 flex justify-end space-x-2">
+              <div className="pt-2 border-t border-slate-100 flex justify-end space-x-2">
                 <button
                   type="button"
                   onClick={() => setIsSkillModalOpen(false)}
-                  className="px-3 py-1.5 rounded-lg bg-slate-800 text-slate-300"
+                  className="px-3.5 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 font-medium cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold"
+                  className="px-4 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xs cursor-pointer"
                 >
                   Add Skill
                 </button>
@@ -726,17 +726,17 @@ export default function ProjectsView({ onDataChanged, onNavigate }) {
       )}
 
       {/* Workflow Navigation Footer */}
-      <div className="p-5 bg-slate-900/80 border border-cyan-500/30 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="p-5 bg-white border border-slate-200/90 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xs">
         <div>
-          <span className="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold">Step 4 of 10 Completed</span>
-          <h4 className="text-sm font-bold text-slate-100">Ready to link your developer activity?</h4>
-          <p className="text-xs text-slate-400">Proceed to Step 5 to connect your GitHub repositories and LeetCode problem solving profiles.</p>
+          <span className="text-[10px] font-mono uppercase tracking-wider text-blue-600 font-bold">Step 4 of 10 Completed</span>
+          <h4 className="text-sm font-bold text-slate-900">Ready to link your developer activity?</h4>
+          <p className="text-xs text-slate-600">Proceed to Step 5 to connect your GitHub repositories and LeetCode problem solving profiles.</p>
         </div>
         {onNavigate && (
           <button
             type="button"
             onClick={() => onNavigate('coding')}
-            className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-slate-950 font-bold text-xs flex items-center space-x-2 transition shadow-md glow-cyan shrink-0 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs flex items-center space-x-2 transition shadow-xs shrink-0 cursor-pointer"
           >
             <span>Proceed to Step 5: Coding Profiles</span>
             <ChevronRight className="w-4 h-4" />
