@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import bcrypt from 'bcryptjs';
+import { initializeMongoIntegration, syncLocalToMongo } from './mongoSync.js';
+import { isMongoConnected, User, Profile, AcademicRecord, Certification, Project, CodingProfile, AssessmentAttempt, InterviewSession, CareerReadiness, Portfolio, Skill } from './models/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -268,6 +270,9 @@ function saveDatabase() {
     try {
       fs.writeFileSync(DB_BACKUP_FILE, payload, 'utf-8');
     } catch (_) {}
+
+    // 4. Asynchronously mirror and synchronize to MongoDB collections if connected
+    syncLocalToMongo(dbData).catch(() => {});
   } catch (err) {
     console.error('Database atomic write error:', err);
   }
@@ -275,11 +280,28 @@ function saveDatabase() {
 
 // Initialize on module load
 loadDatabase();
+initializeMongoIntegration(dbData).catch((err) => {
+  console.warn('[MongoDB Initialization Notice]:', err.message);
+});
 
 export const db = {
-  // Raw access if needed
+  // Raw access & MongoDB integration state
   raw: () => dbData,
   save: () => saveDatabase(),
+  isMongo: () => isMongoConnected(),
+  models: {
+    User,
+    Profile,
+    AcademicRecord,
+    Certification,
+    Project,
+    CodingProfile,
+    AssessmentAttempt,
+    InterviewSession,
+    CareerReadiness,
+    Portfolio,
+    Skill
+  },
 
   // Users
   users: {

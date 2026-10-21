@@ -58,13 +58,29 @@ app.use('/api/career-readiness', careerReadinessRoutes);
 app.use('/api/readiness', careerReadinessRoutes);
 app.use('/api/portfolio', portfolioRoutes);
 
-// Health check endpoint
+// Health & Architecture check endpoint
 app.get(['/api/health', '/health'], (req, res) => {
   res.json({
     status: 'ok',
     uptime: process.uptime(),
     timestamp: new Date().toISOString(),
-    service: 'portfolio-compiler-api'
+    service: 'portfolio-compiler-api',
+    database: {
+      type: db.isMongo() ? 'MongoDB (Live Cluster)' : 'MongoDB Mongoose (Hybrid Resilient Mode)',
+      connectedToRemoteMongo: db.isMongo(),
+      collections: [
+        'users',
+        'profiles',
+        'academicRecords',
+        'certifications',
+        'projects',
+        'codingProfiles',
+        'assessmentAttempts',
+        'interviewSessions',
+        'careerReadiness',
+        'portfolios'
+      ]
+    }
   });
 });
 
